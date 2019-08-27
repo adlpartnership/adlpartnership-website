@@ -1,14 +1,27 @@
 import React from "react"
-
-import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Layout from "../components/layout"
+import { GiDeadHead } from "react-icons/gi"
 
-const NotFoundPage = () => (
-  <Layout>
-    <SEO title="404: Not found" />
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </Layout>
-)
+const NotFoundPage = () => {
+  return (
+    <React.Fragment>
+      <SEO title="Oops, Sorry!" />
+      <Layout>
+        <div className="container my-5 text-center">
+          <GiDeadHead size={"10rem"} />
+          <h1 className="text-center">Sorry!</h1>
+          <p className="lead">
+            We probably made mistake linking the page you were looking for...
+          </p>
+          <p>Can you send us a feedback which page is missing?</p>
+          <a href="#" className="text-dark text-decoration-none">
+            Click here
+          </a>
+        </div>
+      </Layout>
+    </React.Fragment>
+  )
+}
 
 export default NotFoundPage

@@ -5,3 +5,7 @@
  */
 
 // You can delete this file if you're not using it
+require("bootstrap/dist/css/bootstrap.min.css")
+require("react-responsive-carousel/lib/styles/carousel.min.css")
+require("typeface-open-sans")
+require("./src/styles/global-styles.css")

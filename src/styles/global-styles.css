@@ -1,0 +1,113 @@
+.dropdown:hover .dropdown-menu {
+  display: block;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    text-align: right;
+  }
+  .dropdown {
+    text-align: right;
+  }
+}
+
+.image-carousel {
+  height: calc(100vh - 64px);
+}
+
+.legend {
+  background: rgba(0, 0, 0, 0) !important;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px !important;
+  opacity: 1 !important;
+}
+
+.control-dots {
+  padding: 0;
+}
+
+.footer-social-icons {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-social-icons > li {
+  margin: 0 0.5rem;
+  font-size: 1.5rem;
+}
+
+.footer-social-icons a {
+  color: #f3f3f3;
+}
+.footer-social-icons a:hover {
+  color: #aaaaaa;
+}
+
+.search-input {
+  border-radius: 5rem;
+}
+
+.active {
+  color: red !important;
+}
+
+.featured-image-people-page {
+  height: calc(50vh - 64px);
+}
+
+.project-navigation-filter {
+  overflow: auto;
+}
+
+@media screen and (min-width: 1200px) {
+  .project-navigation-filter {
+    margin: 0 auto;
+  }
+}
+
+.divider {
+  border-top: 1px solid #dddddd;
+}
+
+.project-thumbnail div {
+  padding: 1.5px;
+  color: white;
+}
+.project-thumbnail h4 {
+  margin: 0.5rem;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.project-thumbnail .overlay {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75));
+}
+
+@media screen and (min-width: 1200px) {
+  .project-thumbnail .overlay {
+    height: 100%;
+    background: none;
+    transition: all 0.2s ease-in;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .project-thumbnail .overlay:hover {
+    height: 100%;
+    background: rgb(255, 0, 0, 0.5);
+  }
+
+  .project-thumbnail h4 {
+    display: none;
+  }
+  .project-thumbnail a:hover h4 {
+    display: block;
+    font-size: 24px;
+    font-weight: 300;
+  }
+}
