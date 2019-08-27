@@ -5,7 +5,15 @@ import Img from "gatsby-image"
 const CarouselIndividualProject = ({ dataImage }) => {
   return (
     <React.Fragment>
-      <Carousel showThumbs={false} showStatus={false} showArrows={true}>
+      <Carousel
+        showThumbs={false}
+        infiniteLoop
+        autoPlay
+        showStatus={false}
+        useKeyboardArrows
+        showArrows={true}
+        emulateTouch
+      >
         {dataImage.map(image => {
           return (
             <div

@@ -30,6 +30,7 @@ const CarouselHero = () => {
         showStatus={false}
         useKeyboardArrows
         showArrows={true}
+        emulateTouch
       >
         {images.edges.map(image => {
           return (
@@ -39,7 +40,7 @@ const CarouselHero = () => {
                 className={`image-carousel`}
               />
               <Link to={`/projects/${image.node.name}`}>
-                <p className="legend">{image.node.name}</p>
+                <h1 className="legend">{image.node.name}</h1>
               </Link>
             </React.Fragment>
           )
