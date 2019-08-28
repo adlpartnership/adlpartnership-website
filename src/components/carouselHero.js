@@ -39,7 +39,7 @@ const CarouselHero = () => {
                 fluid={image.node.childImageSharp.fluid}
                 className={`image-carousel`}
               />
-              <Link to={`/projects/${image.node.name}`}>
+              <Link to={`/project-template`}>
                 <h1 className="legend">{image.node.name}</h1>
               </Link>
             </React.Fragment>
