@@ -1,5 +1,5 @@
 import React from "react"
-import { Carousel } from "../../node_modules/react-responsive-carousel copy"
+import { Carousel } from "react-responsive-carousel-copy"
 import Img from "gatsby-image"
 
 const CarouselIndividualProject = ({ dataImage }) => {
