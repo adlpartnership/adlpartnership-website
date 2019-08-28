@@ -1,8 +1,8 @@
-import { Carousel } from "react-responsive-carousel"
+import { Carousel } from "../../node_modules/react-responsive-carousel"
 import React from "react"
 import Img from "gatsby-image"
 import { useStaticQuery, graphql, Link } from "gatsby"
-
+import carouselHeroStyles from "./carouselHero.module.scss"
 const CarouselHero = () => {
   const { images } = useStaticQuery(graphql`
     {
@@ -31,6 +31,7 @@ const CarouselHero = () => {
         useKeyboardArrows
         showArrows={true}
         emulateTouch
+        className={`${carouselHeroStyles.styledControlDots}`}
       >
         {images.edges.map(image => {
           return (
@@ -40,7 +41,9 @@ const CarouselHero = () => {
                 className={`image-carousel`}
               />
               <Link to={`/project-template`}>
-                <h1 className="legend">{image.node.name}</h1>
+                <h1 className={`legend ${carouselHeroStyles.styledLegend}`}>
+                  {image.node.name}
+                </h1>
               </Link>
             </React.Fragment>
           )
