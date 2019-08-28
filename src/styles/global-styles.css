@@ -112,3 +112,12 @@
     font-weight: 300;
   }
 }
+
+@media screen and (max-width: 767.98px) {
+  .control-dots {
+    margin-bottom: 6rem !important;
+  }
+  .legend {
+    margin-bottom: 5rem;
+  }
+}
