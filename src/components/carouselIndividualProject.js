@@ -1,5 +1,5 @@
 import React from "react"
-import { Carousel } from "react-responsive-carousel-copy"
+import { Carousel } from "react-responsive-carousel"
 import Img from "gatsby-image"
 
 const CarouselIndividualProject = ({ dataImage }) => {
@@ -13,6 +13,7 @@ const CarouselIndividualProject = ({ dataImage }) => {
         useKeyboardArrows
         showArrows={true}
         emulateTouch
+        showIndicators={false}
       >
         {dataImage.map(image => {
           return (
