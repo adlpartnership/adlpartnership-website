@@ -16,4 +16,4 @@
 [[redirects]]
   from = "https://adlpartnership.sawirstudio.com"
   to = "/"
-  status = 200
+  status = 301
