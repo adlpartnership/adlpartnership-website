@@ -7,3 +7,8 @@
   from = "/wp-json"
   to = "https://adminadlpartnership.sawirstudio.com/wp-json"
   status = 301
+
+  [[redirects]]
+  from = "/"
+  to = "/coming-soon"
+  status = 302

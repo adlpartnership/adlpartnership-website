@@ -62,10 +62,10 @@ const ComingSoonPage = () => {
           <p className="lead text-center">
             For inquiries or questions,{" "}
             <a
-              href="mailto:lukito@adlpartnership.com"
+              href="mailto:indonesia@adlpartnership.com"
               className="text-light text-decoration-none"
             >
-              click here or email lukito@adlpartnership.com
+              click here or email indonesia@adlpartnership.com
             </a>
           </p>
           <p className="text-center">

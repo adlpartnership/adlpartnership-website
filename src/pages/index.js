@@ -5,9 +5,6 @@ import { graphql, navigate } from "gatsby"
 import SEO from "../components/seo"
 
 const IndexPage = () => {
-  useEffect(() => {
-    navigate("/coming-soon")
-  }, [])
   return (
     <React.Fragment>
       <SEO title="Welcome" />
