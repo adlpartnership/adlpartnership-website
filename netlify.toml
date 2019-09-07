@@ -1,0 +1,9 @@
+[[redirects]]
+  from = "/admin"
+  to = "https://adminadlpartnership.sawirstudio.com/wp-admin"
+  status = 200
+
+  [[redirects]]
+  from = "/wp-json"
+  to = "https://adminadlpartnership.sawirstudio.com/wp-json"
+  status = 301
