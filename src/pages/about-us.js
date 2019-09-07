@@ -10,7 +10,7 @@ const AboutUsPage = () => {
         <div className="container my-5">
           <div className="row">
             <div className="col-12 col-md-4">
-              <h1>
+              <h1 style={{ fontFamily: "Gotham", fontWeight: "700" }}>
                 <span className="text-danger">excite</span>
                 <span className="text-muted">.calm</span>.think
               </h1>

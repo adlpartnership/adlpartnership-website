@@ -93,9 +93,9 @@ const ProjectTemplate = () => {
                         />
                       </div>
                       <div className="my-2" />
-                      <h5 className="font-weight-light">
+                      <h6 className="font-weight-light">
                         Other Project Individual
-                      </h5>
+                      </h6>
                     </Link>
                   </div>
                 )
