@@ -107,14 +107,14 @@ input {
 
 @media screen and (min-width: 1200px) {
   .project-thumbnail .overlay {
-    height: 100%;
+    height: 35%;
     background: none;
     transition: all 0.2s ease-in;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
   }
-  .project-thumbnail .overlay:hover {
+  .project-thumbnail a:hover .overlay {
     height: 35%;
     background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75));
   }
