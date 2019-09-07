@@ -68,7 +68,7 @@ const ComingSoonPage = () => {
               click here or email lukito@adlpartnership.com
             </a>
           </p>
-          <p className="text-center small">
+          <p className="text-center">
             Built with{" "}
             <a
               href="https://sawirstudio.com"
