@@ -68,6 +68,15 @@ const ComingSoonPage = () => {
               click here or email lukito@adlpartnership.com
             </a>
           </p>
+          <p className="text-center small">
+            Built with{" "}
+            <a
+              href="https://sawirstudio.com"
+              className="text-light text-decoration-none"
+            >
+              Sawir Studio
+            </a>
+          </p>
         </div>
       </div>
     </React.Fragment>
