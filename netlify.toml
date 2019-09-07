@@ -9,7 +9,11 @@
   status = 301
 
   [[redirects]]
-  from = "/"
+  from = "https://adlpartnership.com"
+  to = "/coming-soon"
+  status = 302
+  [[redirects]]
+  from = "https://www.adlpartnership.com"
   to = "/coming-soon"
   status = 302
 
