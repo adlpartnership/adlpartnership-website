@@ -1,7 +1,7 @@
 [[redirects]]
   from = "/admin"
   to = "https://adminadlpartnership.sawirstudio.com/wp-admin"
-  status = 200
+  status = 301
 
   [[redirects]]
   from = "/wp-json"
