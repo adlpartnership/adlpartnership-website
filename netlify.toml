@@ -22,3 +22,8 @@
   from = "https://adlpartnership.sawirstudio.com"
   to = "/home"
   status = 301
+
+   [[redirects]]
+  from = "https://adlpartnership.netlify.com/*"
+  to = "https://www.adlpartnership.com/:splat"
+  status = 301
