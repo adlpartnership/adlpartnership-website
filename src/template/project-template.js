@@ -5,7 +5,9 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 import CarouselIndividualProject from "../components/carouselIndividualProject"
 
-const ProjectTemplate = ({ data: { portfolio } }) => {
+const ProjectTemplate = props => {
+  const { portfolio, relatedPortfolio } = props.data
+  console.log(props)
   const categories = portfolio.categories.map(category => {
     return category.name
   })
@@ -114,6 +116,41 @@ const ProjectTemplate = ({ data: { portfolio } }) => {
             <h4>See Related Projects</h4>
             <div className="my-3" />
             <div className="row">
+              {relatedPortfolio.edges.map(portfolio => {
+                return (
+                  <div
+                    className="col-12 col-md-4 mt-5 mt-md-0"
+                    key={`${portfolio.node.id}`}
+                  >
+                    <Link
+                      to={`/${portfolio.node.slug}`}
+                      className="text-dark text-decoration-none"
+                    >
+                      <div
+                        className="position-relative w-100"
+                        style={{ paddingTop: "56.25%" }}
+                      >
+                        <Img
+                          className="position-absolute w-100"
+                          style={{ top: "0", left: "0", height: "100%" }}
+                          fluid={
+                            portfolio.node.featured_media.localFile
+                              .childImageSharp.fluid
+                          }
+                          alt={portfolio.node.featured_media.alt_text}
+                        />
+                      </div>
+                      <div className="my-2" />
+                      <h6
+                        className="font-weight-light"
+                        dangerouslySetInnerHTML={{
+                          __html: portfolio.node.title,
+                        }}
+                      ></h6>
+                    </Link>
+                  </div>
+                )
+              })}
               {/*{temporaryImages.edges.map(image => {
                 return (
                   <div className="col-12 col-md-4">
@@ -149,7 +186,29 @@ const ProjectTemplate = ({ data: { portfolio } }) => {
 export default ProjectTemplate
 
 export const query = graphql`
-  query($slug: String) {
+  query($slug: String, $categories: String) {
+    relatedPortfolio: allWordpressWpPortfolio(
+      limit: 3
+      filter: { categories: { elemMatch: { slug: { eq: $categories } } } }
+    ) {
+      edges {
+        node {
+          id
+          slug
+          title
+          featured_media {
+            alt_text
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
     portfolio: wordpressWpPortfolio(slug: { eq: $slug }) {
       title
       content
