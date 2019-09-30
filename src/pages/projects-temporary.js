@@ -31,7 +31,20 @@ const temporaryProjectData = [
   `CitraLand Barsa City`,
 ]
 
-const ProjectsPage = ({ data }) => {
+const ProjectsPage = () => {
+  const { temporaryImage } = useStaticQuery(graphql`
+    {
+      temporaryImage: file(
+        relativePath: { eq: "carousel-hero/citraland-1.jpg" }
+      ) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `)
   return (
     <React.Fragment>
       <SEO title="Projects" />
@@ -53,35 +66,7 @@ const ProjectsPage = ({ data }) => {
         <div className="divider" />
         <div className="container-fluid">
           <div className="row project-thumbnail">
-            {data.allPortfolio.edges.map((project, index) => {
-              return (
-                <div className="col-6 col-md-4 col-lg-3" key={`${index}`}>
-                  <Link to={`/${project.node.slug}`}>
-                    <div
-                      className="position-relative w-100"
-                      style={{ paddingTop: "100%" }}
-                    >
-                      <Img
-                        className="position-absolute w-100"
-                        style={{ top: "0", left: "0", height: "100%" }}
-                        fluid={
-                          project.node.featured_media.localFile.childImageSharp
-                            .fluid
-                        }
-                        alt={project.node.featured_media.alt_text}
-                      />
-                      <div
-                        className="position-absolute w-100 overlay"
-                        style={{ bottom: "0" }}
-                      >
-                        <h4>{project.node.title}</h4>
-                      </div>
-                    </div>
-                  </Link>
-                </div>
-              )
-            })}
-            {/*{temporaryProjectData.map((project, index) => {
+            {temporaryProjectData.map((project, index) => {
               return (
                 <div className="col-6 col-md-4 col-lg-3" key={`${index}`}>
                   <Link to={`/project-template`}>
@@ -104,7 +89,7 @@ const ProjectsPage = ({ data }) => {
                   </Link>
                 </div>
               )
-            })}*/}
+            })}
           </div>
         </div>
       </Layout>
@@ -113,27 +98,3 @@ const ProjectsPage = ({ data }) => {
 }
 
 export default ProjectsPage
-
-export const query = graphql`
-  {
-    allPortfolio: allWordpressWpPortfolio {
-      edges {
-        node {
-          id
-          title
-          slug
-          featured_media {
-            alt_text
-            localFile {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`

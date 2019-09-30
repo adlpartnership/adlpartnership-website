@@ -1,0 +1,4 @@
+.slide picture img {
+  object-fit: contain !important;
+  background-color: #f4f4f4;
+}

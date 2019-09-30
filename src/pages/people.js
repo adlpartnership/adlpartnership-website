@@ -44,9 +44,16 @@ const temporaryDataProfile = [
 ]
 
 const PeoplePage = () => {
-  const { featuredImage } = useStaticQuery(graphql`
+  const { featuredImage, placeholder } = useStaticQuery(graphql`
     {
       featuredImage: file(relativePath: { eq: "people/architect.jpeg" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      placeholder: file(relativePath: { eq: "people/Hangga.png" }) {
         childImageSharp {
           fluid {
             ...GatsbyImageSharpFluid
@@ -106,9 +113,9 @@ const PeoplePage = () => {
                 <div key={`${index}`} className="col-12 col-lg-6 mb-5 mb-lg-0">
                   <div className="row">
                     <div className="col-12 col-md-4">
-                      <img
+                      <Img
                         className="w-100"
-                        src="http://i1.wp.com/adlpartnership.com/wp-content/uploads/2016/02/Hangga.png?zoom=2&resize=199%2C171"
+                        fluid={placeholder.childImageSharp.fluid}
                       />
                     </div>
                     <div className="col-12 col-md-8">

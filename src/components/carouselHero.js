@@ -3,7 +3,7 @@ import React from "react"
 import Img from "gatsby-image"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import carouselHeroStyles from "./carouselHero.module.scss"
-const CarouselHero = () => {
+const CarouselHero = ({ data }) => {
   const { images } = useStaticQuery(graphql`
     {
       images: allFile(filter: { relativeDirectory: { eq: "carousel-hero" } }) {
@@ -33,16 +33,18 @@ const CarouselHero = () => {
         emulateTouch
         className={`${carouselHeroStyles.styledControlDots}`}
       >
-        {images.edges.map(image => {
+        {data.map(image => {
           return (
             <React.Fragment key={`${image.node.id}`}>
               <Img
-                fluid={image.node.childImageSharp.fluid}
+                fluid={
+                  image.node.featured_media.localFile.childImageSharp.fluid
+                }
                 className={`image-carousel`}
               />
-              <Link to={`/project-template`}>
+              <Link to={`/${image.node.slug}`}>
                 <h1 className={`legend ${carouselHeroStyles.styledLegend}`}>
-                  {image.node.name}
+                  {image.node.title}
                 </h1>
               </Link>
             </React.Fragment>

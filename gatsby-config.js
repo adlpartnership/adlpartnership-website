@@ -11,6 +11,27 @@ module.exports = {
         trackingIds: ["UA-135085180-5"],
       },
     },
+    {
+      resolve: "gatsby-source-wordpress",
+      options: {
+        baseUrl: "adminadlpartnership.sawirstudio.com",
+        protocol: "https",
+        useACF: true,
+        includedRoutes: [
+          "**/categories",
+          "**/posts",
+          "**/pages",
+          "**/media",
+          "**/tags",
+          "**/taxonomies",
+          "**/users",
+          "**/portfolio",
+        ],
+        normalizer: function({ entities }) {
+          return entities
+        },
+      },
+    },
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     {
