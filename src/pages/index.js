@@ -18,7 +18,7 @@ const IndexPage = ({ data }) => {
 export default IndexPage
 
 export const query = graphql`
-  query MyQuery {
+  {
     featured: allWordpressWpPortfolio(
       filter: { acf: { include_in_home_page: { eq: true } } }
     ) {
