@@ -7,7 +7,7 @@ import CarouselIndividualProject from "../components/carouselIndividualProject"
 
 const ProjectTemplate = props => {
   const { portfolio, relatedPortfolio } = props.data
-  console.log(props)
+
   const categories = portfolio.categories.map(category => {
     return category.name
   })
