@@ -200,7 +200,7 @@ export const query = graphql`
             alt_text
             localFile {
               childImageSharp {
-                fluid {
+                fluid(quality: 100) {
                   ...GatsbyImageSharpFluid
                 }
               }
@@ -217,7 +217,7 @@ export const query = graphql`
           alt_text
           localFile {
             childImageSharp {
-              fluid {
+              fluid(quality: 100) {
                 ...GatsbyImageSharpFluid
               }
             }
