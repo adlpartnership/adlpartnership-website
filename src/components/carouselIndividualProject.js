@@ -21,7 +21,7 @@ const CarouselIndividualProject = ({ dataImage }) => {
           return (
             <div
               className="position-relative w-100"
-              style={{ paddingTop: "56.25%" }}
+              style={{ paddingTop: "75%" }}
             >
               <Img
                 className="position-absolute w-100"
