@@ -48,7 +48,7 @@ const ProjectsPage = props => {
   useEffect(() => {
     props.location.state.tag != undefined &&
       setFilterTag(props.location.state.tag)
-  }, [props.location.state.key])
+  }, [props.location.state])
   return (
     <React.Fragment>
       <SEO title="Projects" />
