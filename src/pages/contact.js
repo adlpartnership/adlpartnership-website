@@ -16,16 +16,28 @@ const ContactPage = () => {
           <div className="row">
             <div className="col-12">
               <form
-                onSubmit={handleOnSubmit}
                 className="text-center mx-auto"
                 style={{ maxWidth: "700px" }}
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                action="/thank-you"
+                data-netlify-honeypot="bot-field"
+                data-netlify-recaptcha="true"
               >
+                <p hidden>
+                  <label>
+                    Don’t fill this out if you're human:{" "}
+                    <input name="bot-field" />
+                  </label>
+                </p>
                 <div className="form-row">
                   <div className="col-12 col-md-6">
                     <input
                       type="text"
                       className="form-control"
                       placeholder="Your Name"
+                      name="name"
                     />
                   </div>
                   <div className="col-12 col-md-6 mt-3 mt-md-0">
@@ -33,16 +45,19 @@ const ContactPage = () => {
                       type="email"
                       className="form-control"
                       placeholder="Your Email"
+                      name="email"
                     />
                   </div>
-                  <div className="col-12 mt-3">
+                  <div className="col-12 mt-3 text-light">
                     <textarea
                       className="form-control"
-                      rows="3"
+                      rows="6"
                       placeholder="Your Message"
+                      name="message"
                     ></textarea>
                   </div>
                 </div>
+                <div data-netlify-recaptcha="true" />
                 <button
                   className="btn btn-danger mt-3 mx-auto btn-lg"
                   type="submit"
