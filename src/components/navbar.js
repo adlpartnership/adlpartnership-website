@@ -55,28 +55,60 @@ const Navbar = props => {
                   <Link className="dropdown-item" to="/projects">
                     All
                   </Link>
-                  <Link className="dropdown-item" to="/projects">
+                  <Link
+                    className="dropdown-item"
+                    to="/projects"
+                    state={{ tag: "architectural" }}
+                  >
                     Architectural Project
                   </Link>
-                  <Link className="dropdown-item" to="/projects">
-                    Master Planning Project
+                  <Link
+                    className="dropdown-item"
+                    to="/projects"
+                    state={{ tag: "master plan" }}
+                  >
+                    Master Plan
                   </Link>
-                  <Link className="dropdown-item" to="/projects">
+                  <Link
+                    className="dropdown-item"
+                    to="/projects"
+                    state={{ tag: "mixed-use" }}
+                  >
                     Mixed-Use Development
                   </Link>
-                  <Link className="dropdown-item" to="/projects">
+                  <Link
+                    className="dropdown-item"
+                    to="/projects"
+                    state={{ tag: "office" }}
+                  >
                     Office
                   </Link>
-                  <Link className="dropdown-item" to="/projects">
+                  <Link
+                    className="dropdown-item"
+                    to="/projects"
+                    state={{ tag: "residential" }}
+                  >
                     Residential
                   </Link>
-                  <Link className="dropdown-item" to="/projects">
+                  <Link
+                    className="dropdown-item"
+                    to="/projects"
+                    state={{ tag: "retail" }}
+                  >
                     Retail
                   </Link>
-                  <Link className="dropdown-item" to="/projects">
+                  <Link
+                    className="dropdown-item"
+                    to="/projects"
+                    state={{ tag: "transit oriented development" }}
+                  >
                     Transit Oriented Development
                   </Link>
-                  <Link className="dropdown-item" to="/projects">
+                  <Link
+                    className="dropdown-item"
+                    to="/projects"
+                    state={{ tag: "hospitality" }}
+                  >
                     Hospitality
                   </Link>
                 </div>

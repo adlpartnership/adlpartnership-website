@@ -1,18 +1,18 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
+import queryString from "query-string"
 
 const tags = [
-  "All",
   "Architectural Project",
-  "Master Planning Project",
-  "Mixed-Use Development",
+  "Master Plan",
+  "Mixed-Use",
   "Office",
   "Residential",
   "Retail",
-  "Transport-Oriented Development",
+  "Transit Oriented Development",
   "Hospitality",
 ]
 
@@ -31,7 +31,24 @@ const temporaryProjectData = [
   `CitraLand Barsa City`,
 ]
 
-const ProjectsPage = ({ data }) => {
+const ProjectsPage = props => {
+  const [classActive, setActive] = useState(8)
+  const [filterTag, setFilterTag] = useState("")
+  const filteredProjects = props.data.allPortfolio.edges.filter(portfolio => {
+    return portfolio.node.categories
+      .map(e => e.name)
+      .join()
+      .toLowerCase()
+      .includes(filterTag.toLowerCase())
+  })
+
+  console.log(props.location.state)
+  console.log("filter" + filterTag)
+
+  useEffect(() => {
+    props.location.state.tag != undefined &&
+      setFilterTag(props.location.state.tag)
+  }, [props.location.state.key])
   return (
     <React.Fragment>
       <SEO title="Projects" />
@@ -40,12 +57,29 @@ const ProjectsPage = ({ data }) => {
           className="nav project-navigation-filter py-2"
           style={{ flexWrap: "nowrap", whiteSpace: "nowrap" }}
         >
-          {tags.map(tag => {
+          <li className="nav-item">
+            <p
+              className={`nav-link font-weight-light m-0 ${
+                classActive === 8 ? `text-danger` : `text-muted`
+              }`}
+              onClick={() => (setFilterTag(""), setActive(8))}
+              style={{ cursor: "pointer" }}
+            >
+              All
+            </p>
+          </li>
+          {tags.map((tag, index) => {
             return (
               <li className="nav-item">
-                <Link className="nav-link text-muted font-weight-light" to="#">
+                <p
+                  className={`nav-link font-weight-light m-0 ${
+                    index === classActive ? `text-danger` : `text-muted`
+                  }`}
+                  onClick={() => (setFilterTag(tag), setActive(index))}
+                  style={{ cursor: "pointer" }}
+                >
                   {tag}
-                </Link>
+                </p>
               </li>
             )
           })}
@@ -53,7 +87,7 @@ const ProjectsPage = ({ data }) => {
         <div className="divider" />
         <div className="container-fluid">
           <div className="row project-thumbnail">
-            {data.allPortfolio.edges.map((project, index) => {
+            {filteredProjects.map((project, index) => {
               return (
                 <div className="col-6 col-md-4 col-lg-3" key={`${index}`}>
                   <Link to={`/${project.node.slug}`}>
@@ -122,6 +156,9 @@ export const query = graphql`
           id
           title
           slug
+          categories {
+            name
+          }
           featured_media {
             alt_text
             localFile {
