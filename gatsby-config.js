@@ -12,6 +12,18 @@ module.exports = {
       },
     },
     {
+      resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
+      options: {
+        fields: ["title", "slug", "categories"],
+        resolvers: {
+          wordpress__wp_portfolio: {
+            title: node => node.title,
+            slug: node => node.slug,
+          },
+        },
+      },
+    },
+    {
       resolve: "gatsby-source-wordpress",
       options: {
         baseUrl: "adminadlpartnership.sawirstudio.com",

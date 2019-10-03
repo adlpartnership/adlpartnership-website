@@ -3,8 +3,14 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import { MdMenu, MdSearch } from "react-icons/md"
 import { NavDropdown } from "react-bootstrap"
+import { navigate } from "@reach/router"
 const Navbar = () => {
   const [openCollapsedMenu, setOpenCollapsedMenu] = useState(false)
+  const [search, setSearch] = useState("")
+  function searchIt(e) {
+    e.preventDefault()
+    navigate(`/search?s=${search}`)
+  }
   const { logo } = useStaticQuery(graphql`
     {
       logo: file(relativePath: { eq: "ADL-icon.png" }) {
@@ -107,13 +113,17 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-            <form className="form-inline my-2 my-lg-0 justify-content-end">
+            <form
+              className="form-inline my-2 my-lg-0 justify-content-end"
+              onSubmit={searchIt}
+            >
               <input
                 className="form-control mr-sm-2 search-input"
                 type="search"
                 placeholder="Search in ADL"
+                onChange={e => setSearch(e.target.value)}
               />
-              <button className="btn my-2 my-sm-0 p-0">
+              <button className="btn my-2 my-sm-0 p-0" type="submit">
                 <MdSearch size={"1.5rem"} />
               </button>
             </form>

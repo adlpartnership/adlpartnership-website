@@ -43,7 +43,7 @@ const ProjectsPage = ({ data }) => {
           {tags.map(tag => {
             return (
               <li className="nav-item">
-                <Link className="nav-link text-muted font-weight-light">
+                <Link className="nav-link text-muted font-weight-light" to="#">
                   {tag}
                 </Link>
               </li>

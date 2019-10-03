@@ -170,3 +170,15 @@ input {
 .navbar a {
   font-weight: 300;
 }
+
+.search-result a h3 {
+  border-bottom: 1px solid #e6e6e6;
+  padding: 1rem 0;
+}
+
+.search-result a:hover h3 {
+  color: #ff0000;
+}
+.search-result a:last-child h3 {
+  border: none;
+}
