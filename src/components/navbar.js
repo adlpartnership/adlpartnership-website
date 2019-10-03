@@ -4,12 +4,14 @@ import Img from "gatsby-image"
 import { MdMenu, MdSearch } from "react-icons/md"
 import { NavDropdown } from "react-bootstrap"
 import { navigate } from "@reach/router"
-const Navbar = () => {
+
+const Navbar = props => {
   const [openCollapsedMenu, setOpenCollapsedMenu] = useState(false)
   const [search, setSearch] = useState("")
   function searchIt(e) {
     e.preventDefault()
     navigate(`/search?s=${search}`)
+    window.location.reload()
   }
   const { logo } = useStaticQuery(graphql`
     {
