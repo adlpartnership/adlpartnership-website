@@ -60,7 +60,7 @@ const Navbar = props => {
                     to="/projects"
                     state={{ tag: "architectural" }}
                   >
-                    Architectural Project
+                    Architecture
                   </Link>
                   <Link
                     className="dropdown-item"
