@@ -6,7 +6,7 @@ import Img from "gatsby-image"
 import queryString from "query-string"
 
 const tags = [
-  "Architectural Project",
+  "Architecture",
   "Master Plan",
   "Mixed-Use",
   "Office",
@@ -41,9 +41,6 @@ const ProjectsPage = props => {
       .toLowerCase()
       .includes(filterTag.toLowerCase())
   })
-
-  console.log(props.location.state)
-  console.log("filter" + filterTag)
 
   useEffect(() => {
     props.location.state.tag != undefined &&
