@@ -182,3 +182,25 @@ input {
 .search-result a:last-child h3 {
   border: none;
 }
+
+.people-grid {
+  display: flex;
+}
+
+.people-grid-partner {
+  width: 66.66%;
+}
+
+.people-grid-staff {
+  width: 33.33%;
+}
+
+@media screen and (max-width: 767.98px) {
+  .people-grid {
+    display: block;
+  }
+  .people-grid-partner,
+  .people-grid-staff {
+    width: 100%;
+  }
+}

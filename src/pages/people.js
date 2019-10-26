@@ -1,7 +1,7 @@
 import React from "react"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 import { MdEmail } from "react-icons/md"
 import { FaLinkedin } from "react-icons/fa"
@@ -66,7 +66,7 @@ const PeoplePage = () => {
     <React.Fragment>
       <SEO title="People" />
       <Layout>
-        <div className="container mt-5 text-center">
+        <div className="container my-5 text-center">
           <h1 className="display-4 text-center font-weight-light">Our Team</h1>
 
           <p>
@@ -77,9 +77,202 @@ const PeoplePage = () => {
           </p>
         </div>
 
+        <div className="container people-grid">
+          <div className="people-grid-partner">
+            <Link className="text-light" to={`/people-template`}>
+              <div
+                className="position-relative w-100 h-100"
+                style={{ paddingTop: "56.25%" }}
+              >
+                <Img
+                  className="position-absolute w-100"
+                  style={{ top: "0", left: "0", height: "100%" }}
+                  fluid={featuredImage.childImageSharp.fluid}
+                />
+                <div
+                  className="position-absolute w-100"
+                  style={{ bottom: "0", left: "10px" }}
+                >
+                  <h3>Budi Setiawan</h3>
+                  <p>Partner</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className="people-grid-staff project-thumbnail">
+            <Link className="text-light" to={`/people-template`}>
+              <div
+                className="position-relative w-100"
+                style={{ paddingTop: "56.25%" }}
+              >
+                <Img
+                  className="position-absolute w-100"
+                  style={{ top: "0", left: "0", height: "100%" }}
+                  fluid={featuredImage.childImageSharp.fluid}
+                />
+                <div
+                  className="position-absolute w-100"
+                  style={{ bottom: "0", left: "10px" }}
+                >
+                  <h3>Hangga Swandaru Hadi</h3>
+                  <p>Partner</p>
+                </div>
+              </div>
+            </Link>
+            <Link className="text-light" to={`/people-template`}>
+              <div
+                className="position-relative w-100"
+                style={{ paddingTop: "56.20%" }}
+              >
+                <Img
+                  className="position-absolute w-100"
+                  style={{ top: "0", left: "0", height: "100%" }}
+                  fluid={featuredImage.childImageSharp.fluid}
+                />
+                <div
+                  className="position-absolute w-100"
+                  style={{ bottom: "0", left: "10px" }}
+                >
+                  <h3>Lukito Nugroho</h3>
+                  <p>Partner</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+
+        <div className="container people-grid">
+          <div className="people-grid-staff project-thumbnail">
+            <Link className="text-light" to={`/people-template`}>
+              <div
+                className="position-relative w-100"
+                style={{ paddingTop: "56.25%" }}
+              >
+                <Img
+                  className="position-absolute w-100"
+                  style={{ top: "0", left: "0", height: "100%" }}
+                  fluid={featuredImage.childImageSharp.fluid}
+                />
+                <div
+                  className="position-absolute w-100"
+                  style={{ bottom: "0", left: "10px" }}
+                >
+                  <h3>Mohamad Iqbal</h3>
+                  <p>Senior Associate</p>
+                </div>
+              </div>
+            </Link>
+            <Link className="text-light" to={`/people-template`}>
+              <div
+                className="position-relative w-100"
+                style={{ paddingTop: "56.20%" }}
+              >
+                <Img
+                  className="position-absolute w-100"
+                  style={{ top: "0", left: "0", height: "100%" }}
+                  fluid={featuredImage.childImageSharp.fluid}
+                />
+                <div
+                  className="position-absolute w-100"
+                  style={{ bottom: "0", left: "10px" }}
+                >
+                  <h3>Kemal Ramadhan</h3>
+                  <p>Associate</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className="people-grid-partner">
+            <Link className="text-light" to={`/people-template`}>
+              <div
+                className="position-relative w-100 h-100"
+                style={{ paddingTop: "56.25%" }}
+              >
+                <Img
+                  className="position-absolute w-100"
+                  style={{ top: "0", left: "0", height: "100%" }}
+                  fluid={featuredImage.childImageSharp.fluid}
+                />
+                <div
+                  className="position-absolute w-100"
+                  style={{ bottom: "0", left: "10px" }}
+                >
+                  <h3>Adhitya Kurniadilaga</h3>
+                  <p>Senior Urban Designer</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+
+        <div className="container people-grid">
+          <div className="people-grid-partner">
+            <Link className="text-light" to={`/people-template`}>
+              <div
+                className="position-relative w-100 h-100"
+                style={{ paddingTop: "56.25%" }}
+              >
+                <Img
+                  className="position-absolute w-100"
+                  style={{ top: "0", left: "0", height: "100%" }}
+                  fluid={featuredImage.childImageSharp.fluid}
+                />
+                <div
+                  className="position-absolute w-100"
+                  style={{ bottom: "0", left: "10px" }}
+                >
+                  <h3>Dominikus Aditya Fitriyanto</h3>
+                  <p>Senior Designer</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className="people-grid-staff project-thumbnail">
+            <Link className="text-light" to={`/people-template`}>
+              <div
+                className="position-relative w-100"
+                style={{ paddingTop: "56.25%" }}
+              >
+                <Img
+                  className="position-absolute w-100"
+                  style={{ top: "0", left: "0", height: "100%" }}
+                  fluid={featuredImage.childImageSharp.fluid}
+                />
+                <div
+                  className="position-absolute w-100"
+                  style={{ bottom: "0", left: "10px" }}
+                >
+                  <h3>Alam Cahya</h3>
+                  <p>Urban Designer</p>
+                </div>
+              </div>
+            </Link>
+            <Link className="text-light" to={`/people-template`}>
+              <div
+                className="position-relative w-100"
+                style={{ paddingTop: "56.20%" }}
+              >
+                <Img
+                  className="position-absolute w-100"
+                  style={{ top: "0", left: "0", height: "100%" }}
+                  fluid={featuredImage.childImageSharp.fluid}
+                />
+                <div
+                  className="position-absolute w-100"
+                  style={{ bottom: "0", left: "10px" }}
+                >
+                  <h3>Imam Maksum Meidianto</h3>
+                  <p>Designer</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+
         <div className="container my-5">
           <div className="people-grid">
-            <div className="people-content"></div>
+            <div className="people-content-partner bg-dark"></div>
+            <div className="people-content-staff bg-dark"></div>
           </div>
         </div>
 

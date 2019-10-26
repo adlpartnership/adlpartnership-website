@@ -115,20 +115,20 @@ const Navbar = props => {
               </li>
               <li className="nav-item">
                 <Link
-                  to="/services"
-                  className="nav-link"
-                  activeClassName="active"
-                >
-                  Services
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
                   to="/about-us"
                   className="nav-link"
                   activeClassName="active"
                 >
                   About Us
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  to="/services"
+                  className="nav-link"
+                  activeClassName="active"
+                >
+                  Services
                 </Link>
               </li>
               <li className="nav-item">
