@@ -66,21 +66,44 @@ const PeoplePage = () => {
     <React.Fragment>
       <SEO title="People" />
       <Layout>
-        <div className="container mt-5 text-center">
-          <h1 className="display-4 text-center font-weight-light">Our Team</h1>
-
-          <p>
-            Our team brings together ideas, creativity, technical expertise and
-            attention to details that enhances the planning, design and
-            construction process. We collaborate, challenge ideas and think
-            out-of-the-box to provide the best design solutions for our clients.
-          </p>
-        </div>
-
-        <div className="container my-5">
-          <div className="people-grid">
-            <div className="people-content"></div>
+        <div className="position-relative">
+          <Img
+            fluid={featuredImage.childImageSharp.fluid}
+            className="featured-image-people-page"
+          />
+          <div
+            className="position-absolute d-flex flex-column justify-content-center text-light text-center container"
+            style={{
+              top: "0",
+              left: "0",
+              right: "0",
+              bottom: "0",
+              maxWidth: "700px",
+            }}
+          >
+            <h1 className="display-4">The Partnership of Experts.</h1>
+            <p>
+              Whilst the team pursues design excellence through creative
+              solutions, the team does not lose sights of the need for sound
+              project management.
+            </p>
           </div>
+        </div>
+        <div className="container mt-5">
+          <blockquote className="block-quote text-center">
+            <h4 className="font-weight-light">
+              A successful project is completed on time and under budget while
+              creatively solving design challenges.
+            </h4>
+          </blockquote>
+          <p>
+            Before a project begins, the team leaders develop workplans that
+            address task, staffing, and schedule requirements. These leaders
+            then use comprehensive planning tools to adjust the workplans
+            throughout the project. In doing so the team is able to focus on the
+            critical issues at the right time, delivering cost effective as well
+            as creative solutions for the clients.
+          </p>
         </div>
 
         <div className="container my-5">

@@ -10,31 +10,26 @@ const temporaryNewsData = [
   "Hangga Wins at international Architect Design Award 2019",
 ]
 
-const NewsPage = () => {
-  const { temporaryFeaturedImage } = useStaticQuery(graphql`
-    {
-      temporaryFeaturedImage: file(
-        relativePath: { eq: "people/architect.jpeg" }
-      ) {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  `)
+const NewsPage = ({ data }) => {
   return (
     <React.Fragment>
       <SEO title="News" />
       <Layout>
         <div className="container my-5">
-          <Link to="/news-template" className="text-dark text-decoration-none">
+          <Link
+            to={`/${data.news.edges[0].node.slug}`}
+            className="text-dark text-decoration-none"
+          >
             <div className="row mx-auto">
               <div className="col-12 col-md-8">
                 <p className="text-muted">★ Featured News</p>
-                <h1 className="display-3">{temporaryNewsData[0]}</h1>
-                <p className="m-0">Author Name</p>
+                <h1
+                  className="h1 font-weight-light"
+                  dangerouslySetInnerHTML={{
+                    __html: data.news.edges[0].node.title,
+                  }}
+                ></h1>
+
                 <p className="text-muted small">{new Date().toDateString()}</p>
               </div>
               <div className="col-12 col-md-4">
@@ -45,7 +40,10 @@ const NewsPage = () => {
                   <Img
                     className="position-absolute w-100"
                     style={{ top: "0", left: "0", height: "100%" }}
-                    fluid={temporaryFeaturedImage.childImageSharp.fluid}
+                    fluid={
+                      data.news.edges[0].node.featured_media.localFile
+                        .childImageSharp.fluid
+                    }
                   />
                 </div>
               </div>
@@ -55,11 +53,11 @@ const NewsPage = () => {
           <h2 className="text-center">Happening in ADL Partnership</h2>
           <div className="my-5" />
           <div className="row">
-            {temporaryNewsData.map(article => {
+            {data.news.edges.slice(1).map(article => {
               return (
                 <div className="col-12 col-md-6 col-lg-4 mt-4 mt-lg-0">
                   <Link
-                    to="/news-template"
+                    to={`/${article.node.slug}`}
                     className="text-dark text-decoration-none"
                   >
                     <div
@@ -69,12 +67,16 @@ const NewsPage = () => {
                       <Img
                         className="position-absolute w-100"
                         style={{ top: "0", left: "0", height: "100%" }}
-                        fluid={temporaryFeaturedImage.childImageSharp.fluid}
+                        fluid={
+                          article.node.featured_media.localFile.childImageSharp
+                            .fluid
+                        }
                       />
                     </div>
                     <div className="my-3" />
-                    <h4>{article}</h4>
-                    <p className="m-0">Author Name</p>
+                    <h4
+                      dangerouslySetInnerHTML={{ __html: article.node.title }}
+                    ></h4>
                     <p className="text-muted small">
                       {new Date().toDateString()}
                     </p>
@@ -90,3 +92,26 @@ const NewsPage = () => {
 }
 
 export default NewsPage
+
+export const query = graphql`
+  {
+    news: allWordpressPost {
+      edges {
+        node {
+          title
+          slug
+          date(formatString: "YYYY MM,DD")
+          featured_media {
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`

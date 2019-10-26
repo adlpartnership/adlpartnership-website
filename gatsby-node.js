@@ -11,9 +11,20 @@ const path = require("path")
 module.exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const portfolioTemplate = path.resolve("./src/template/project-template.js")
+  const newsTemplate = path.resolve("./src/template/news-template.js")
   const res = await graphql(`
     query {
       portfolio: allWordpressWpPortfolio {
+        edges {
+          node {
+            slug
+            categories {
+              slug
+            }
+          }
+        }
+      }
+      news: allWordpressPost {
         edges {
           node {
             slug
@@ -32,6 +43,16 @@ module.exports.createPages = async ({ graphql, actions }) => {
       context: {
         slug: portfolio.node.slug,
         categories: portfolio.node.categories[0].slug,
+      },
+    })
+  })
+  res.data.news.edges.forEach(news => {
+    createPage({
+      component: newsTemplate,
+      path: `/${news.node.slug}`,
+      context: {
+        slug: news.node.slug,
+        categories: news.node.categories[0].slug,
       },
     })
   })

@@ -11,7 +11,12 @@ const ContactPage = () => {
       <SEO title="Contact Us" />
       <Layout>
         <div className="container my-5">
-          <h1 className="display-4 text-uppercase text-center">Contact Us</h1>
+          <h1
+            className="text-uppercase text-center"
+            style={{ fontSize: "40px", color: "#555555" }}
+          >
+            Contact Us
+          </h1>
           <div className="my-3" />
           <div className="row">
             <div className="col-12">
@@ -50,7 +55,7 @@ const ContactPage = () => {
                   </div>
                   <div className="col-12 mt-3 text-light">
                     <textarea
-                      className="form-control"
+                      className="form-control text-light"
                       rows="6"
                       placeholder="Your Message"
                       name="message"
