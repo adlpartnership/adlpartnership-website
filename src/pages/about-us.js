@@ -26,8 +26,6 @@ const AboutUsPage = () => {
               style={{ color: "#999999" }}
             >
               <p>
-                Excite Architecture is not only about shelter, nor a simple
-                enclosure. It has to excite one,calm one, and make one think.
                 ADL (Architecture Design Laboratory) was founded in Singapore in
                 2015 by a group of architects, who are passionate about
                 architecture and urban planning to form a unique design firm.
