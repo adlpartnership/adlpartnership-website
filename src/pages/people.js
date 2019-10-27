@@ -93,7 +93,7 @@ const PeoplePage = () => {
                   className="position-absolute w-100"
                   style={{ bottom: "0", left: "10px" }}
                 >
-                  <h3>Budi Setiawan</h3>
+                  <h5>Budi Setiawan</h5>
                   <p>Partner</p>
                 </div>
               </div>
@@ -114,7 +114,7 @@ const PeoplePage = () => {
                   className="position-absolute w-100"
                   style={{ bottom: "0", left: "10px" }}
                 >
-                  <h3>Hangga Swandaru Hadi</h3>
+                  <h5>Hangga Swandaru Hadi</h5>
                   <p>Partner</p>
                 </div>
               </div>
@@ -133,7 +133,7 @@ const PeoplePage = () => {
                   className="position-absolute w-100"
                   style={{ bottom: "0", left: "10px" }}
                 >
-                  <h3>Lukito Nugroho</h3>
+                  <h5>Lukito Nugroho</h5>
                   <p>Partner</p>
                 </div>
               </div>
@@ -157,7 +157,7 @@ const PeoplePage = () => {
                   className="position-absolute w-100"
                   style={{ bottom: "0", left: "10px" }}
                 >
-                  <h3>Mohamad Iqbal</h3>
+                  <h5>Mohamad Iqbal</h5>
                   <p>Senior Associate</p>
                 </div>
               </div>
@@ -176,7 +176,7 @@ const PeoplePage = () => {
                   className="position-absolute w-100"
                   style={{ bottom: "0", left: "10px" }}
                 >
-                  <h3>Kemal Ramadhan</h3>
+                  <h5>Kemal Ramadhan</h5>
                   <p>Associate</p>
                 </div>
               </div>
@@ -197,7 +197,7 @@ const PeoplePage = () => {
                   className="position-absolute w-100"
                   style={{ bottom: "0", left: "10px" }}
                 >
-                  <h3>Adhitya Kurniadilaga</h3>
+                  <h5>Adhitya Kurniadilaga</h5>
                   <p>Senior Urban Designer</p>
                 </div>
               </div>
@@ -221,7 +221,7 @@ const PeoplePage = () => {
                   className="position-absolute w-100"
                   style={{ bottom: "0", left: "10px" }}
                 >
-                  <h3>Dominikus Aditya Fitriyanto</h3>
+                  <h5>Dominikus Aditya Fitriyanto</h5>
                   <p>Senior Designer</p>
                 </div>
               </div>
@@ -242,7 +242,7 @@ const PeoplePage = () => {
                   className="position-absolute w-100"
                   style={{ bottom: "0", left: "10px" }}
                 >
-                  <h3>Alam Cahya</h3>
+                  <h5>Alam Cahya</h5>
                   <p>Urban Designer</p>
                 </div>
               </div>
@@ -261,7 +261,7 @@ const PeoplePage = () => {
                   className="position-absolute w-100"
                   style={{ bottom: "0", left: "10px" }}
                 >
-                  <h3>Imam Maksum Meidianto</h3>
+                  <h5>Imam Maksum Meidianto</h5>
                   <p>Designer</p>
                 </div>
               </div>
@@ -273,52 +273,6 @@ const PeoplePage = () => {
           <div className="people-grid">
             <div className="people-content-partner bg-dark"></div>
             <div className="people-content-staff bg-dark"></div>
-          </div>
-        </div>
-
-        <div className="container my-5">
-          <div className="row">
-            {temporaryDataProfile.map((profile, index) => {
-              return (
-                <div key={`${index}`} className="col-12 col-lg-6 mb-5 mb-lg-0">
-                  <div className="row">
-                    <div className="col-12 col-md-4">
-                      <Img
-                        className="w-100"
-                        fluid={placeholder.childImageSharp.fluid}
-                      />
-                    </div>
-                    <div className="col-12 col-md-8">
-                      <h2 className="mt-4 mt-lg-0 font-weight-light">
-                        {profile.name}
-                      </h2>
-                      <p className="small text-muted">{profile.title}</p>
-                      {profile.education.map(education => {
-                        return (
-                          <p className="small text-muted p-0 m-0">
-                            {education}
-                          </p>
-                        )
-                      })}
-                      <div className="mt-2" />
-                      {profile.contactInfo.map(link => {
-                        return (
-                          <a
-                            href={link.link}
-                            className="mr-1 text-danger"
-                            style={{ fontSize: "1.5rem" }}
-                          >
-                            {link.type === "email" && <MdEmail />}
-                            {link.type === "linkedIn" && <FaLinkedin />}
-                          </a>
-                        )
-                      })}
-                      <p className="text-muted mt-4">{profile.bio}</p>
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
           </div>
         </div>
       </Layout>

@@ -24,7 +24,7 @@ const ServicesPage = ({ data }) => {
               maxWidth: "700px",
             }}
           >
-            <h1 className="display-4">
+            <h1 className="h2 font-weight-light">
               Comprehensive Architectural Design and Master Planning
             </h1>
           </div>

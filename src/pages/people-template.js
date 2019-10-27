@@ -23,7 +23,7 @@ const PeopleTemplatePage = () => {
       <SEO title="News Details Page" />
       <Layout>
         <div className="container my-5">
-          <div className="mb-5 w-50 mx-auto">
+          <div className="mb-5 w-100 w-md-50 mx-auto">
             <div
               className="position-relative w-100 "
               style={{ paddingTop: "56.25%" }}
