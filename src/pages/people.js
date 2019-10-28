@@ -66,7 +66,10 @@ const PeoplePage = () => {
     <React.Fragment>
       <SEO title="People" />
       <Layout>
-        <div className="container my-5 text-center">
+        <div
+          className="container my-5 text-center mx-auto"
+          style={{ maxWidth: "850px" }}
+        >
           <h1 className="display-4 text-center font-weight-light">Our Team</h1>
 
           <p>
@@ -77,12 +80,15 @@ const PeoplePage = () => {
           </p>
         </div>
 
-        <div className="container people-grid">
+        <div
+          className="container people-grid mx-auto"
+          style={{ maxWidth: "850px" }}
+        >
           <div className="people-grid-partner">
             <Link className="text-light" to={`/people-template`}>
               <div
                 className="position-relative w-100 h-100"
-                style={{ paddingTop: "56.25%" }}
+                style={{ paddingTop: "75%" }}
               >
                 <Img
                   className="position-absolute w-100"
@@ -103,7 +109,7 @@ const PeoplePage = () => {
             <Link className="text-light" to={`/people-template`}>
               <div
                 className="position-relative w-100"
-                style={{ paddingTop: "56.25%" }}
+                style={{ paddingTop: "75%" }}
               >
                 <Img
                   className="position-absolute w-100"
@@ -122,7 +128,7 @@ const PeoplePage = () => {
             <Link className="text-light" to={`/people-template`}>
               <div
                 className="position-relative w-100"
-                style={{ paddingTop: "56.20%" }}
+                style={{ paddingTop: "75%" }}
               >
                 <Img
                   className="position-absolute w-100"
@@ -141,12 +147,15 @@ const PeoplePage = () => {
           </div>
         </div>
 
-        <div className="container people-grid">
+        <div
+          className="container people-grid mx-auto"
+          style={{ maxWidth: "850px" }}
+        >
           <div className="people-grid-staff project-thumbnail">
             <Link className="text-light" to={`/people-template`}>
               <div
                 className="position-relative w-100"
-                style={{ paddingTop: "56.25%" }}
+                style={{ paddingTop: "75%" }}
               >
                 <Img
                   className="position-absolute w-100"
@@ -165,7 +174,7 @@ const PeoplePage = () => {
             <Link className="text-light" to={`/people-template`}>
               <div
                 className="position-relative w-100"
-                style={{ paddingTop: "56.20%" }}
+                style={{ paddingTop: "75%" }}
               >
                 <Img
                   className="position-absolute w-100"
@@ -186,7 +195,7 @@ const PeoplePage = () => {
             <Link className="text-light" to={`/people-template`}>
               <div
                 className="position-relative w-100 h-100"
-                style={{ paddingTop: "56.25%" }}
+                style={{ paddingTop: "75%" }}
               >
                 <Img
                   className="position-absolute w-100"
@@ -205,12 +214,15 @@ const PeoplePage = () => {
           </div>
         </div>
 
-        <div className="container people-grid">
+        <div
+          className="container people-grid mx-auto"
+          style={{ maxWidth: "850px" }}
+        >
           <div className="people-grid-partner">
             <Link className="text-light" to={`/people-template`}>
               <div
                 className="position-relative w-100 h-100"
-                style={{ paddingTop: "56.25%" }}
+                style={{ paddingTop: "75%" }}
               >
                 <Img
                   className="position-absolute w-100"
@@ -231,7 +243,7 @@ const PeoplePage = () => {
             <Link className="text-light" to={`/people-template`}>
               <div
                 className="position-relative w-100"
-                style={{ paddingTop: "56.25%" }}
+                style={{ paddingTop: "75%" }}
               >
                 <Img
                   className="position-absolute w-100"
@@ -250,7 +262,7 @@ const PeoplePage = () => {
             <Link className="text-light" to={`/people-template`}>
               <div
                 className="position-relative w-100"
-                style={{ paddingTop: "56.20%" }}
+                style={{ paddingTop: "75%" }}
               >
                 <Img
                   className="position-absolute w-100"
