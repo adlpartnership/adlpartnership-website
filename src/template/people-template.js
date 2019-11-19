@@ -5,7 +5,6 @@ import Img from "gatsby-image"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
 const PeopleTemplatePage = ({ data }) => {
-  console.log(data)
   return (
     <React.Fragment>
       <SEO
