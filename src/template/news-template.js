@@ -9,11 +9,14 @@ const NewsTemplatePage = ({ data }) => {
     <React.Fragment>
       <SEO title={`${data.news.title}`} />
       <Layout>
-        <div className="container my-5">
-          <h1 dangerouslySetInnerHTML={{ __html: data.news.title }}></h1>
-          <p className="text-muted">{data.news.date}</p>
+        <div className="container my-5 mx-auto" style={{ maxWidth: "700px" }}>
+          <p className="text-muted text-center">{data.news.date}</p>
+          <h1
+            dangerouslySetInnerHTML={{ __html: data.news.title }}
+            className="text-center"
+          ></h1>
           <div
-            className="position-relative w-100"
+            className="position-relative w-100 "
             style={{ paddingTop: "56.25%" }}
           >
             <Img
@@ -27,6 +30,7 @@ const NewsTemplatePage = ({ data }) => {
             style={{ maxWidth: "700px", lineHeight: "25.6px" }}
             dangerouslySetInnerHTML={{ __html: data.news.content }}
           ></div>
+          {/*
           <div className="row">
             <div className="col-12 col-md-4 mt-4 mt-md-0">
               <div
@@ -79,7 +83,7 @@ const NewsTemplatePage = ({ data }) => {
               <h5>Other Article Title</h5>
               <p className="text-muted">{new Date().toDateString()}</p>
             </div>
-          </div>
+          </div> */}
         </div>
       </Layout>
     </React.Fragment>

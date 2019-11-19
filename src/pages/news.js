@@ -16,75 +16,42 @@ const NewsPage = ({ data }) => {
       <SEO title="News" />
       <Layout>
         <div className="container my-5">
-          <Link
-            to={`/${data.news.edges[0].node.slug}`}
-            className="text-dark text-decoration-none"
-          >
-            <div className="row mx-auto">
-              <div className="col-12 col-md-8">
-                <p className="text-muted">★ Featured News</p>
-                <h1
-                  className="h1 font-weight-light"
-                  dangerouslySetInnerHTML={{
-                    __html: data.news.edges[0].node.title,
-                  }}
-                ></h1>
-
-                <p className="text-muted small">{new Date().toDateString()}</p>
-              </div>
-              <div className="col-12 col-md-4">
-                <div
-                  className="position-relative w-100"
-                  style={{ paddingTop: "100%" }}
-                >
-                  <Img
-                    className="position-absolute w-100"
-                    style={{ top: "0", left: "0", height: "100%" }}
-                    fluid={
-                      data.news.edges[0].node.featured_media.localFile
-                        .childImageSharp.fluid
-                    }
-                  />
-                </div>
-              </div>
-            </div>
-          </Link>
-          <div className="my-5 py-3" />
-          <h2 className="text-center">Happening in ADL Partnership</h2>
-          <div className="my-5" />
-          <div className="row">
-            {data.news.edges.slice(1).map(article => {
-              return (
-                <div className="col-12 col-md-6 col-lg-4 mt-4 mt-lg-0">
-                  <Link
-                    to={`/${article.node.slug}`}
-                    className="text-dark text-decoration-none"
-                  >
+          <h1 className="display-4 font-weight-light text-center mb-5">
+            News + Event
+          </h1>
+          {data.news.edges.map((post, index) => {
+            return (
+              <React.Fragment key={`${index}`}>
+                <div className="row my-3">
+                  <div className="col-12 col-md-6">
                     <div
                       className="position-relative w-100"
-                      style={{ paddingTop: "100%" }}
+                      style={{ paddingTop: "56.25%" }}
                     >
                       <Img
                         className="position-absolute w-100"
                         style={{ top: "0", left: "0", height: "100%" }}
                         fluid={
-                          article.node.featured_media.localFile.childImageSharp
+                          post.node.featured_media.localFile.childImageSharp
                             .fluid
                         }
                       />
                     </div>
-                    <div className="my-3" />
-                    <h4
-                      dangerouslySetInnerHTML={{ __html: article.node.title }}
-                    ></h4>
-                    <p className="text-muted small">
-                      {new Date().toDateString()}
-                    </p>
-                  </Link>
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <p className="text-small text-muted">{post.node.date}</p>
+                    <h2 className="font-weight-light">{post.node.title}</h2>
+                    <Link
+                      to={post.node.slug}
+                      className="text-muted font-weight-light text-decoration-none"
+                    >
+                      Read More
+                    </Link>
+                  </div>
                 </div>
-              )
-            })}
-          </div>
+              </React.Fragment>
+            )
+          })}
         </div>
       </Layout>
     </React.Fragment>
@@ -100,7 +67,7 @@ export const query = graphql`
         node {
           title
           slug
-          date(formatString: "YYYY MM,DD")
+          date(formatString: " MMMM DD, YYYY")
           featured_media {
             localFile {
               childImageSharp {

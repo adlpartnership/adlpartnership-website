@@ -38,6 +38,7 @@ module.exports = {
           "**/taxonomies",
           "**/users",
           "**/portfolio",
+          "**/people",
         ],
         normalizer: function({ entities }) {
           return entities
