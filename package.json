@@ -23,14 +23,15 @@
     "jquery": "^3.4.1",
     "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
-    "query-string": "^6.8.3",
+    "query-string": "^6.9.0",
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.12",
     "react-dom": "^16.9.0",
     "react-helmet": "^5.2.1",
     "react-icons": "^3.7.0",
     "react-responsive-carousel": "^3.1.50",
-    "typeface-open-sans": "0.0.75"
+    "typeface-open-sans": "0.0.75",
+    "wpapi": "^1.2.1"
   },
   "devDependencies": {
     "prettier": "^1.18.2"
