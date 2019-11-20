@@ -14,7 +14,7 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="https://www.instagram.com/adl.partnership/">
                 <FaInstagram />
               </a>
             </li>
