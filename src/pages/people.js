@@ -313,14 +313,14 @@ const PeoplePage = () => {
               </div>
             </div>
             <div className="row no-gutters project-thumbnail m-0 p-0">
-              <div className="col-6 m-0 p-0 special-treatment">
-                {peopleGroup[12]}
-              </div>
-              <div className="col-6 m-0 p-0">
+              {peopleGroup.slice(12).map(person => {
+                return <div className="col-4 m-0 p-0">{person}</div>
+              })}
+              <div className="col-4 m-0 p-0">
                 <Link to="/people">
                   <div
                     className="position-relative w-100"
-                    style={{ paddingTop: "50%" }}
+                    style={{ paddingTop: "75%" }}
                   >
                     <Img
                       className="position-absolute w-100"
