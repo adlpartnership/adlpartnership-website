@@ -198,8 +198,7 @@ const PeoplePage = () => {
             className="container my-5 text-center mx-auto"
             style={{ maxWidth: "850px" }}
           >
-            <h1 className="h5 text-center font-weight-light">Our Team</h1>
-
+            <h1 className="h3 font-weight-light text-center mb-2">Our Team</h1>
             <p>
               Our team brings together ideas, creativity, technical expertise
               and attention to details that enhances the planning, design and
@@ -259,9 +258,7 @@ const PeoplePage = () => {
             className="container my-5 text-center mx-auto"
             style={{ maxWidth: "850px" }}
           >
-            <h1 className="display-4 text-center font-weight-light">
-              Our Team
-            </h1>
+            <h1 className="h3 font-weight-light text-center mb-2">Our Team</h1>
 
             <p>
               Our team brings together ideas, creativity, technical expertise
