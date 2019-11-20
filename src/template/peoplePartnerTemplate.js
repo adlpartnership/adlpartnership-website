@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 import Img from "gatsby-image"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
-const PeopleTemplatePage = ({ data }) => {
+const PeoplePartnerTemplatePage = ({ data }) => {
   return (
     <React.Fragment>
       <SEO
@@ -63,11 +63,11 @@ const PeopleTemplatePage = ({ data }) => {
   )
 }
 
-export default PeopleTemplatePage
+export default PeoplePartnerTemplatePage
 
 export const query = graphql`
   query($slug: String) {
-    people: wordpressWpPeople(slug: { eq: $slug }) {
+    people: wordpressWpPeoplePartner(slug: { eq: $slug }) {
       title
       professional_title
       content

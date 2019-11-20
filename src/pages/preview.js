@@ -45,6 +45,23 @@ export default function PreviewPage({ location }) {
           setTitle(res.title.rendered)
           setReady(true)
         })
+    } else if (type === "people_partner") {
+      wp.peoplePartner = wp.registerRoute("wp/v2", "/people_partner/(?P<id>)")
+      wp.people()
+        .id(id)
+        .auth()
+        .then(res => {
+          wp.media()
+            .id(res.featured_media)
+            .then(media => {
+              setAlt(media.alt_text)
+              setSrc(media.source_url)
+            })
+          setContent(res.content.rendered)
+          setProfessionalTitle(res["professional-title"])
+          setTitle(res.title.rendered)
+          setReady(true)
+        })
     } else if (type === "post") {
       wp.posts()
         .id(id)
@@ -90,9 +107,8 @@ export default function PreviewPage({ location }) {
         })
     }
   }, [])
-  console.log(carousel)
   if (ready) {
-    if (type === "people") {
+    if (type === "people" || type === "people_partner") {
       return (
         <React.Fragment>
           <SEO title={title} />
@@ -206,11 +222,16 @@ export default function PreviewPage({ location }) {
               </Carousel>
               <div className="my-5" />
               <h1
-                className="font-weight-light"
+                className="h4 font-weight-light"
                 dangerouslySetInnerHTML={{ __html: title }}
               ></h1>
 
-              <p className="text-muted">{wpCategories.join(", ")}</p>
+              <p
+                className="text-muted"
+                dangerouslySetInnerHTML={{
+                  __html: "Categories: " + wpCategories.join(", "),
+                }}
+              ></p>
 
               <div className="my-3" />
               <div className="row">

@@ -39,6 +39,7 @@ module.exports = {
           "**/users",
           "**/portfolio",
           "**/people",
+          "**/people_partner",
         ],
         normalizer: function({ entities }) {
           return entities

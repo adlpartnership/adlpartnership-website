@@ -19,14 +19,14 @@ const ProjectTemplate = props => {
           <CarouselIndividualProject dataImage={portfolio.images} />
           <div className="my-5" />
           <h1
-            className="font-weight-light"
+            className="h4 font-weight-light"
             dangerouslySetInnerHTML={{ __html: portfolio.title }}
           ></h1>
 
           <p
             className="text-muted"
             dangerouslySetInnerHTML={{
-              __html: categories.join(", "),
+              __html: "Categories: " + categories.join(", "),
             }}
           ></p>
 

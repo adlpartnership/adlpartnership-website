@@ -120,13 +120,20 @@ input {
   }
 
   .project-thumbnail h4,
-  .project-thumbnail p {
+  .project-thumbnail p,
+  .project-thumbnail h6 {
     display: none;
   }
   .project-thumbnail a:hover h4 {
     display: block;
     font-size: 22px;
     font-weight: 300;
+  }
+
+  .project-thumbnail a:hover h6 {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
   }
   .project-thumbnail a:hover p {
     display: block;
@@ -194,11 +201,11 @@ input {
 }
 
 .people-grid-partner {
-  width: 66.66%;
+  width: 60%;
 }
 
 .people-grid-staff {
-  width: 33.33%;
+  width: 40%;
 }
 
 @media screen and (max-width: 767.98px) {

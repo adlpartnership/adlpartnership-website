@@ -13,6 +13,9 @@ module.exports.createPages = async ({ graphql, actions }) => {
   const portfolioTemplate = path.resolve("./src/template/project-template.js")
   const newsTemplate = path.resolve("./src/template/news-template.js")
   const peopleTemplate = path.resolve("./src/template/people-template.js")
+  const peoplePartnerTemplate = path.resolve(
+    "./src/template/peoplePartnerTemplate.js"
+  )
   const res = await graphql(`
     query {
       portfolio: allWordpressWpPortfolio {
@@ -36,6 +39,13 @@ module.exports.createPages = async ({ graphql, actions }) => {
         }
       }
       people: allWordpressWpPeople {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+      peoplePartner: allWordpressWpPeoplePartner {
         edges {
           node {
             slug
@@ -67,6 +77,15 @@ module.exports.createPages = async ({ graphql, actions }) => {
   res.data.people.edges.forEach(person => {
     createPage({
       component: peopleTemplate,
+      path: `/${person.node.slug}`,
+      context: {
+        slug: person.node.slug,
+      },
+    })
+  })
+  res.data.peoplePartner.edges.forEach(person => {
+    createPage({
+      component: peoplePartnerTemplate,
       path: `/${person.node.slug}`,
       context: {
         slug: person.node.slug,

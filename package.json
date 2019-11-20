@@ -29,6 +29,7 @@
     "react-dom": "^16.9.0",
     "react-helmet": "^5.2.1",
     "react-icons": "^3.7.0",
+    "react-responsive": "^8.0.1",
     "react-responsive-carousel": "^3.1.50",
     "typeface-open-sans": "0.0.75",
     "wpapi": "^1.2.1"

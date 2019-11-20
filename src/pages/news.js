@@ -15,8 +15,8 @@ const NewsPage = ({ data }) => {
     <React.Fragment>
       <SEO title="News" />
       <Layout>
-        <div className="container my-5">
-          <h1 className="display-4 font-weight-light text-center mb-5">
+        <div className="container my-5 mx-auto" style={{ maxWidth: "700px" }}>
+          <h1 className="h3 font-weight-light text-center mb-5">
             News + Event
           </h1>
           {data.news.edges.map((post, index) => {
@@ -39,13 +39,25 @@ const NewsPage = ({ data }) => {
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
-                    <p className="text-small text-muted">{post.node.date}</p>
-                    <h2 className="font-weight-light">{post.node.title}</h2>
                     <Link
                       to={post.node.slug}
-                      className="text-muted font-weight-light text-decoration-none"
+                      className="font-weight-light text-decoration-none"
                     >
-                      Read More
+                      <p className="text-small text-muted">{post.node.date}</p>
+                      <h6 className="font-weight-light text-dark">
+                        {post.node.title}
+                      </h6>
+                      <p
+                        className="text-small text-muted"
+                        style={{ lineHeight: "1.1rem" }}
+                        dangerouslySetInnerHTML={{
+                          __html:
+                            post.node.content
+                              .replace(/<p>/g, "")
+                              .replace(/<\/p>/g)
+                              .substr(0, 60) + "... read more",
+                        }}
+                      ></p>
                     </Link>
                   </div>
                 </div>
@@ -68,6 +80,7 @@ export const query = graphql`
           title
           slug
           date(formatString: " MMMM DD, YYYY")
+          content
           featured_media {
             localFile {
               childImageSharp {
