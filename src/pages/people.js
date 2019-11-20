@@ -9,8 +9,15 @@ const PeoplePage = () => {
   const isMobile = useMediaQuery({
     query: "(max-device-width: 767.98px)",
   })
-  const { people, peoplePartner } = useStaticQuery(graphql`
+  const { people, peoplePartner, supportStaff } = useStaticQuery(graphql`
     {
+      supportStaff: file(relativePath: { eq: "people/support staff.jpg" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
       people: allWordpressWpPeople(sort: { order: ASC, fields: date }) {
         edges {
           node {
@@ -55,7 +62,7 @@ const PeoplePage = () => {
     return (
       <React.Fragment key={`${index}`}>
         <Link to={`/${partner.node.slug}`}>
-          <div className="position-relative h-100">
+          <div className="position-relative h-100" style={{ margin: "1px" }}>
             <Img
               className="position-absolute w-100"
               style={{ top: "0", left: "0", height: "100%" }}
@@ -117,7 +124,7 @@ const PeoplePage = () => {
           <Link to={`/${person.node.slug}`}>
             <div
               className="position-relative w-100"
-              style={{ paddingTop: "75%" }}
+              style={{ paddingTop: "75%", margin: "1px" }}
             >
               <Img
                 className="position-absolute w-100"
@@ -191,9 +198,7 @@ const PeoplePage = () => {
             className="container my-5 text-center mx-auto"
             style={{ maxWidth: "850px" }}
           >
-            <h1 className="display-4 text-center font-weight-light">
-              Our Team
-            </h1>
+            <h1 className="h3 text-center font-weight-light">Our Team</h1>
 
             <p>
               Our team brings together ideas, creativity, technical expertise
@@ -286,21 +291,30 @@ const PeoplePage = () => {
               </div>
             </div>
             <div className="row no-gutters project-thumbnail m-0 p-0">
-              <div className="col-8 m-0 p-0">
-                <div className="row m-0 p-0 no-gutters">
-                  <div className="col-6 m-0 p-0">{peopleGroup[12]}</div>
-                  <div className="col-6 m-0 p-0">{peopleGroup[13]}</div>
-                </div>
-                <div className="row m-0 p-0 no-gutters">
-                  <div className="col-6 m-0 p-0">{peopleGroup[14]}</div>
-                  <div className="col-6 m-0 p-0">{peopleGroup[15]}</div>
-                </div>
+              <div className="col-6 m-0 p-0 special-treatment">
+                {peopleGroup[12]}
               </div>
-              <div
-                className="col-4 m-0 p-0"
-                style={!peopleGroup[15] && { height: "500px" }}
-              >
-                {peoplePartnerGroup[3]}
+              <div className="col-6 m-0 p-0">
+                <Link to="/people">
+                  <div
+                    className="position-relative w-100"
+                    style={{ paddingTop: "50%" }}
+                  >
+                    <Img
+                      className="position-absolute w-100"
+                      style={{ top: "0", left: "0", height: "100%" }}
+                      fluid={supportStaff.childImageSharp.fluid}
+                      alt="support staff"
+                    />
+                    <div
+                      className="position-absolute w-100 overlay"
+                      style={{ bottom: "0" }}
+                    >
+                      <h6 className="ml-2 mb-0">CAD/Support Staff</h6>
+                      <p className="ml-2" style={{ fontSize: "14px" }}></p>
+                    </div>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

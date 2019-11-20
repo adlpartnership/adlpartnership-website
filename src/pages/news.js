@@ -43,10 +43,15 @@ const NewsPage = ({ data }) => {
                       to={post.node.slug}
                       className="font-weight-light text-decoration-none"
                     >
-                      <p className="text-small text-muted">{post.node.date}</p>
-                      <h6 className="font-weight-light text-dark">
+                      <p
+                        className="text-small text-muted"
+                        style={{ fontSize: "1rem" }}
+                      >
+                        {post.node.date}
+                      </p>
+                      <h5 className="font-weight-normal text-dark">
                         {post.node.title}
-                      </h6>
+                      </h5>
                       <p
                         className="text-small text-muted"
                         style={{ lineHeight: "1.1rem" }}
