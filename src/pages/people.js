@@ -218,6 +218,28 @@ const PeoplePage = () => {
                   </div>
                 )
               })}
+            <div className="col-6 m-0 p-0">
+              <Link to="/people">
+                <div
+                  className="position-relative w-100"
+                  style={{ paddingTop: "100%" }}
+                >
+                  <Img
+                    className="position-absolute w-100"
+                    style={{ top: "0", left: "0", height: "100%" }}
+                    fluid={supportStaff.childImageSharp.fluid}
+                    alt="support staff"
+                  />
+                  <div
+                    className="position-absolute w-100 overlay"
+                    style={{ bottom: "0" }}
+                  >
+                    <h6 className="ml-2 mb-0">CAD/Support Staff</h6>
+                    <p className="ml-2" style={{ fontSize: "14px" }}></p>
+                  </div>
+                </div>
+              </Link>
+            </div>
           </div>
         </Layout>
       </React.Fragment>
