@@ -154,7 +154,7 @@ const PeoplePage = () => {
     if (person.node.title !== null) {
       return (
         <React.Fragment key={`${index}`}>
-          <Link to={`/${person.node.slug}`}>
+          <Link to={`/people/${person.node.slug}`}>
             <div
               className="position-relative w-100"
               style={{ paddingTop: "100%" }}

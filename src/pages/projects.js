@@ -87,7 +87,7 @@ const ProjectsPage = props => {
             {filteredProjects.map((project, index) => {
               return (
                 <div className="col-6 col-md-4 col-lg-3" key={`${index}`}>
-                  <Link to={`/${project.node.slug}`}>
+                  <Link to={`/projects/${project.node.slug}`}>
                     <div
                       className="position-relative w-100"
                       style={{ paddingTop: "100%" }}

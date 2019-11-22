@@ -56,7 +56,7 @@ const SearchResultsPage = props => {
               return (
                 <div className="col-12 col-md-4" key={`${result.id}`}>
                   <Link
-                    to={`/${result.slug}`}
+                    to={`/projects/${result.slug}`}
                     className="text-decoration-none text-dark"
                   >
                     <h3 className="font-weight-light">{result.title}</h3>

@@ -40,7 +40,7 @@ const NewsPage = ({ data }) => {
                   </div>
                   <div className="col-12 col-md-6">
                     <Link
-                      to={post.node.slug}
+                      to={`/news/${post.node.slug}`}
                       className="font-weight-light text-decoration-none"
                     >
                       <p

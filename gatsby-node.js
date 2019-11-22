@@ -57,7 +57,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
   res.data.portfolio.edges.forEach(portfolio => {
     createPage({
       component: portfolioTemplate,
-      path: `/${portfolio.node.slug}`,
+      path: `/projects/${portfolio.node.slug}`,
       context: {
         slug: portfolio.node.slug,
         categories: portfolio.node.categories[0].slug,
@@ -67,7 +67,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
   res.data.news.edges.forEach(news => {
     createPage({
       component: newsTemplate,
-      path: `/${news.node.slug}`,
+      path: `/news/${news.node.slug}`,
       context: {
         slug: news.node.slug,
         categories: news.node.categories[0].slug,
@@ -77,7 +77,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
   res.data.people.edges.forEach(person => {
     createPage({
       component: peopleTemplate,
-      path: `/${person.node.slug}`,
+      path: `/people/${person.node.slug}`,
       context: {
         slug: person.node.slug,
       },
@@ -86,7 +86,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
   res.data.peoplePartner.edges.forEach(person => {
     createPage({
       component: peoplePartnerTemplate,
-      path: `/${person.node.slug}`,
+      path: `/people/${person.node.slug}`,
       context: {
         slug: person.node.slug,
       },

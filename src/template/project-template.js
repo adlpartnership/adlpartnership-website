@@ -123,7 +123,7 @@ const ProjectTemplate = props => {
                     key={`${portfolio.node.id}`}
                   >
                     <Link
-                      to={`/${portfolio.node.slug}`}
+                      to={`/projects/${portfolio.node.slug}`}
                       className="text-dark text-decoration-none"
                     >
                       <div
