@@ -61,7 +61,7 @@ const PeoplePage = () => {
   const peoplePartnerGroup = peoplePartner.edges.map((partner, index) => {
     return (
       <React.Fragment key={`${index}`}>
-        <Link to={`/${partner.node.slug}`}>
+        <Link to={`/people/${partner.node.slug}`}>
           <div className="position-relative h-100" style={{ margin: "1px" }}>
             <Img
               className="position-absolute w-100"
@@ -89,7 +89,7 @@ const PeoplePage = () => {
   const peoplePartnerGroupMobile = peoplePartner.edges.map((partner, index) => {
     return (
       <React.Fragment key={`${index}`}>
-        <Link to={`/${partner.node.slug}`}>
+        <Link to={`/people/${partner.node.slug}`}>
           <div
             className="position-relative w-100"
             style={{ paddingTop: "100%" }}
@@ -121,7 +121,7 @@ const PeoplePage = () => {
     if (person.node.title !== null) {
       return (
         <React.Fragment key={`${index}`}>
-          <Link to={`/${person.node.slug}`}>
+          <Link to={`/people/${person.node.slug}`}>
             <div
               className="position-relative w-100"
               style={{ paddingTop: "75%", margin: "1px" }}
