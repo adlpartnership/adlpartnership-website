@@ -49,9 +49,10 @@ const NewsPage = ({ data }) => {
                       >
                         {post.node.date}
                       </p>
-                      <h5 className="font-weight-normal text-dark">
-                        {post.node.title}
-                      </h5>
+                      <h5
+                        className="font-weight-normal text-dark"
+                        dangerouslySetInnerHTML={{ __html: post.node.title }}
+                      ></h5>
                       <p
                         className="text-small text-muted"
                         style={{ lineHeight: "1.1rem" }}
