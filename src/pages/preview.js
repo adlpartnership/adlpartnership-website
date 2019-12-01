@@ -135,7 +135,10 @@ export default function PreviewPage({ location }) {
                   />
                 </div>
               </div>
-              <h1 className="text-center">{title}</h1>
+              <h1
+                className="text-center"
+                dangerouslySetInnerHTML={{ __html: title }}
+              ></h1>
               <p className="text-center text-muted">{professionalTitle}</p>
 
               <div
