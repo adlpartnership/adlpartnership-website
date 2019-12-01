@@ -13,7 +13,7 @@ const NewsTemplatePage = ({ data }) => {
           <p className="text-muted text-center">{data.news.date}</p>
           <h1
             dangerouslySetInnerHTML={{ __html: data.news.title }}
-            className="text-center"
+            className="text-center h3"
           ></h1>
           <div
             className="position-relative w-100 "
