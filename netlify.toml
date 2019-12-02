@@ -8,19 +8,19 @@
   to = "https://adminadlpartnership.sawirstudio.com/wp-json"
   status = 301
 
-  [[redirects]]
-  from = "https://adlpartnership.com"
-  to = "/coming-soon"
-  status = 302
+  # [[redirects]]
+  # from = "https://adlpartnership.com"
+  # to = "/coming-soon"
+  # status = 302
 
-  [[redirects]]
-  from = "https://www.adlpartnership.com"
-  to = "/coming-soon"
-  status = 302
+  # [[redirects]]
+  # from = "https://www.adlpartnership.com"
+  # to = "/coming-soon"
+  # status = 302
 
 [[redirects]]
   from = "https://adlpartnership.sawirstudio.com"
-  to = "/home"
+  to = "/"
   status = 301
 
    [[redirects]]
