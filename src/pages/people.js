@@ -152,6 +152,33 @@ const PeoplePage = () => {
       )
     }
   })
+  const renderSupportGroup = (className = "col-4") => (
+    <div className={`${className} m-0 p-0`}>
+      <Link to="/people">
+        <div className="position-relative w-100" style={{ paddingTop: "75%" }}>
+          <GatsbyImage
+            image={supportStaff.childImageSharp.gatsbyImageData}
+            className="position-absolute w-100"
+            style={{ top: "0", left: "0", height: "100%" }}
+            alt="support staff"
+          />
+          <div
+            className="position-absolute w-100 overlay"
+            style={{ bottom: "0" }}
+          >
+            <h6 className="ml-2 mb-0">CAD/Support Staff</h6>
+            <p className="ml-2" style={{ fontSize: "14px" }}></p>
+          </div>
+        </div>
+      </Link>
+    </div>
+  )
+
+  if (peopleGroup.length >= 12) {
+    peopleGroup.push(renderSupportGroup())
+  } else {
+    peopleGroup.push(renderSupportGroup(""))
+  }
 
   const peopleGroupMobile = people.edges.map((person, index) => {
     if (person.node.title !== null) {
@@ -317,28 +344,6 @@ const PeoplePage = () => {
               {peopleGroup.slice(12).map(person => {
                 return <div className="col-4 m-0 p-0">{person}</div>
               })}
-              <div className="col-4 m-0 p-0">
-                <Link to="/people">
-                  <div
-                    className="position-relative w-100"
-                    style={{ paddingTop: "75%" }}
-                  >
-                    <GatsbyImage
-                      image={supportStaff.childImageSharp.gatsbyImageData}
-                      className="position-absolute w-100"
-                      style={{ top: "0", left: "0", height: "100%" }}
-                      alt="support staff"
-                    />
-                    <div
-                      className="position-absolute w-100 overlay"
-                      style={{ bottom: "0" }}
-                    >
-                      <h6 className="ml-2 mb-0">CAD/Support Staff</h6>
-                      <p className="ml-2" style={{ fontSize: "14px" }}></p>
-                    </div>
-                  </div>
-                </Link>
-              </div>
             </div>
           </div>
 
