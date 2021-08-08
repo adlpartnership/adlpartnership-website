@@ -2,78 +2,89 @@ import React, { useEffect, useState } from "react"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image"
 import { useMediaQuery } from "react-responsive"
 
 const PeoplePage = () => {
   const isMobile = useMediaQuery({
     query: "(max-device-width: 767.98px)",
   })
-  const { people, peoplePartner, supportStaff } = useStaticQuery(graphql`{
-  supportStaff: file(relativePath: {eq: "people/support staff.jpg"}) {
-    childImageSharp {
-      gatsbyImageData(layout: FULL_WIDTH)
-    }
-  }
-  people: allWordpressWpPeople(sort: {order: ASC, fields: date}) {
-    edges {
-      node {
-        slug
-        title
-        professional_title
-        featured_media {
-          alt_text
-          localFile {
-            childImageSharp {
-              gatsbyImageData(layout: FULL_WIDTH)
+  const { people, peoplePartner, supportStaff } = useStaticQuery(graphql`
+    {
+      supportStaff: file(relativePath: { eq: "people/support staff.jpg" }) {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
+        }
+      }
+      people: allWpPeople(sort: { order: ASC, fields: date }) {
+        edges {
+          node {
+            slug
+            title
+            peopleData {
+              professionalTitle
+            }
+            featuredImage {
+              node {
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(layout: FULL_WIDTH)
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      peoplePartner: allWpPeoplePartner {
+        edges {
+          node {
+            slug
+            title
+            peopleData {
+              professionalTitle
+            }
+            featuredImage {
+              node {
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(layout: FULL_WIDTH)
+                  }
+                }
+              }
             }
           }
         }
       }
     }
-  }
-  peoplePartner: allWordpressWpPeoplePartner {
-    edges {
-      node {
-        slug
-        title
-        professional_title
-        featured_media {
-          alt_text
-          localFile {
-            childImageSharp {
-              gatsbyImageData(layout: FULL_WIDTH)
-            }
-          }
-        }
-      }
-    }
-  }
-}
-`)
+  `)
   const peoplePartnerGroup = peoplePartner.edges.map((partner, index) => {
     return (
       <React.Fragment key={`${index}`}>
         <Link to={`/people/${partner.node.slug}`}>
           <div className="position-relative h-100" style={{ margin: "1px" }}>
             <GatsbyImage
-              image={partner.node.featured_media.localFile.childImageSharp.gatsbyImageData}
+              image={
+                partner.node.featuredImage.node.localFile.childImageSharp
+                  .gatsbyImageData
+              }
               className="position-absolute w-100"
               style={{ top: "0", left: "0", height: "100%" }}
-              alt={partner.node.featured_media.alt_text} />
+              alt={partner.node.featuredImage.node.altText}
+            />
             <div
               className="position-absolute w-100 overlay"
               style={{ bottom: "0" }}
             >
               <h6 className="ml-2 mb-0">{partner.node.title}</h6>
               <p className="ml-2" style={{ fontSize: "14px" }}>
-                {partner.node.professional_title}
+                {partner.node.peopleData.professionalTitle}
               </p>
             </div>
           </div>
         </Link>
       </React.Fragment>
-    );
+    )
   })
 
   const peoplePartnerGroupMobile = peoplePartner.edges.map((partner, index) => {
@@ -85,23 +96,27 @@ const PeoplePage = () => {
             style={{ paddingTop: "100%" }}
           >
             <GatsbyImage
-              image={partner.node.featured_media.localFile.childImageSharp.gatsbyImageData}
+              image={
+                partner.node.featuredImage.node.localFile.childImageSharp
+                  .gatsbyImageData
+              }
               className="position-absolute w-100"
               style={{ top: "0", left: "0", height: "100%" }}
-              alt={partner.node.featured_media.alt_text} />
+              alt={partner.node.featuredImage.node.altText}
+            />
             <div
               className="position-absolute w-100 overlay"
               style={{ bottom: "0" }}
             >
               <h6 className="ml-2 mb-0 ">{partner.node.title}</h6>
               <p className="ml-2 " style={{ fontSize: "14px" }}>
-                {partner.node.professional_title}
+                {partner.node.peopleData.professionalTitle}
               </p>
             </div>
           </div>
         </Link>
       </React.Fragment>
-    );
+    )
   })
 
   const peopleGroup = people.edges.map((person, index) => {
@@ -114,23 +129,27 @@ const PeoplePage = () => {
               style={{ paddingTop: "75%", margin: "1px" }}
             >
               <GatsbyImage
-                image={person.node.featured_media.localFile.childImageSharp.gatsbyImageData}
+                image={
+                  person.node.featuredImage.node.localFile.childImageSharp
+                    .gatsbyImageData
+                }
                 className="position-absolute w-100"
                 style={{ top: "0", left: "0", height: "100%" }}
-                alt={person.node.featured_media.alt_text} />
+                alt={person.node.featuredImage.node.altText}
+              />
               <div
                 className="position-absolute w-100 overlay"
                 style={{ bottom: "0" }}
               >
                 <h6 className="ml-2 mb-0">{person.node.title}</h6>
                 <p className="ml-2" style={{ fontSize: "14px" }}>
-                  {person.node.professional_title}
+                  {person.node.peopleData.professionalTitle}
                 </p>
               </div>
             </div>
           </Link>
         </React.Fragment>
-      );
+      )
     }
   })
 
@@ -144,23 +163,27 @@ const PeoplePage = () => {
               style={{ paddingTop: "100%" }}
             >
               <GatsbyImage
-                image={person.node.featured_media.localFile.childImageSharp.gatsbyImageData}
+                image={
+                  person.node.featuredImage.node.localFile.childImageSharp
+                    .gatsbyImageData
+                }
                 className="position-absolute w-100"
                 style={{ top: "0", left: "0", height: "100%" }}
-                alt={person.node.featured_media.alt_text} />
+                alt={person.node.featuredImage.node.altText}
+              />
               <div
                 className="position-absolute w-100 overlay"
                 style={{ bottom: "0" }}
               >
                 <h6 className="ml-2 mb-0">{person.node.title}</h6>
                 <p className="ml-2" style={{ fontSize: "14px" }}>
-                  {person.node.professional_title}
+                  {person.node.peopleData.professionalTitle}
                 </p>
               </div>
             </div>
           </Link>
         </React.Fragment>
-      );
+      )
     }
   })
 
@@ -208,7 +231,8 @@ const PeoplePage = () => {
                     image={supportStaff.childImageSharp.gatsbyImageData}
                     className="position-absolute w-100"
                     style={{ top: "0", left: "0", height: "100%" }}
-                    alt="support staff" />
+                    alt="support staff"
+                  />
                   <div
                     className="position-absolute w-100 overlay"
                     style={{ bottom: "0" }}
@@ -222,7 +246,7 @@ const PeoplePage = () => {
           </div>
         </Layout>
       </React.Fragment>
-    );
+    )
   } else {
     return (
       <React.Fragment>
@@ -303,7 +327,8 @@ const PeoplePage = () => {
                       image={supportStaff.childImageSharp.gatsbyImageData}
                       className="position-absolute w-100"
                       style={{ top: "0", left: "0", height: "100%" }}
-                      alt="support staff" />
+                      alt="support staff"
+                    />
                     <div
                       className="position-absolute w-100 overlay"
                       style={{ bottom: "0" }}
@@ -406,7 +431,7 @@ const PeoplePage = () => {
         )}*/}
         </Layout>
       </React.Fragment>
-    );
+    )
   }
 }
 export default PeoplePage

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import Layout from "../components/layout"
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 import WPAPI from "wpapi"
 import querystring from "query-string"
@@ -24,9 +24,9 @@ export default function PreviewPage({ location }) {
     setType(type)
     const id = Number(querystring.parse(location.search).id)
     const wp = new WPAPI({
-      endpoint: "https://adminadlpartnership.sawirstudio.com/wp-json",
-      username: "adlpartnership",
-      password: "qwer@123",
+      endpoint: process.env.WP_URL + "/wp-json",
+      username: process.env.WP_USERNAME,
+      password: process.env.WP_PASSWORD,
     })
     if (type === "people") {
       wp.people = wp.registerRoute("wp/v2", "/people/(?P<id>)")
@@ -320,7 +320,7 @@ export default function PreviewPage({ location }) {
             </div>
           </Layout>
         </React.Fragment>
-      );
+      )
     }
   } else {
     return (

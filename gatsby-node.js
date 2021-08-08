@@ -18,34 +18,38 @@ module.exports.createPages = async ({ graphql, actions }) => {
   )
   const res = await graphql(`
     query {
-      portfolio: allWordpressWpPortfolio {
+      portfolio: allWpPortfolio {
         edges {
           node {
             slug
             categories {
-              slug
+              nodes {
+                slug
+              }
             }
           }
         }
       }
-      news: allWordpressPost {
+      news: allWpPost {
         edges {
           node {
             slug
             categories {
-              slug
+              nodes {
+                slug
+              }
             }
           }
         }
       }
-      people: allWordpressWpPeople {
+      people: allWpPeople {
         edges {
           node {
             slug
           }
         }
       }
-      peoplePartner: allWordpressWpPeoplePartner {
+      peoplePartner: allWpPeoplePartner {
         edges {
           node {
             slug
@@ -60,7 +64,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
       path: `/projects/${portfolio.node.slug}`,
       context: {
         slug: portfolio.node.slug,
-        categories: portfolio.node.categories[0].slug,
+        categories: portfolio.node.categories.nodes[0].slug,
       },
     })
   })
@@ -70,7 +74,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
       path: `/news/${news.node.slug}`,
       context: {
         slug: news.node.slug,
-        categories: news.node.categories[0].slug,
+        categories: news.node.categories.nodes[0].slug,
       },
     })
   })

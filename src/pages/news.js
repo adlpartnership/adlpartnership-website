@@ -1,7 +1,7 @@
 import React from "react"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
 const temporaryNewsData = [
@@ -29,9 +29,13 @@ const NewsPage = ({ data }) => {
                       style={{ paddingTop: "56.25%" }}
                     >
                       <GatsbyImage
-                        image={post.node.featured_media.localFile.childImageSharp.gatsbyImageData}
+                        image={
+                          post.node.featuredImage.node.localFile.childImageSharp
+                            .gatsbyImageData
+                        }
                         className="position-absolute w-100"
-                        style={{ top: "0", left: "0", height: "100%" }} />
+                        style={{ top: "0", left: "0", height: "100%" }}
+                      />
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
@@ -64,33 +68,36 @@ const NewsPage = ({ data }) => {
                   </div>
                 </div>
               </React.Fragment>
-            );
+            )
           })}
         </div>
       </Layout>
     </React.Fragment>
-  );
+  )
 }
 
 export default NewsPage
 
-export const query = graphql`{
-  news: allWordpressPost {
-    edges {
-      node {
-        title
-        slug
-        date(formatString: " MMMM DD, YYYY")
-        content
-        featured_media {
-          localFile {
-            childImageSharp {
-              gatsbyImageData(layout: FULL_WIDTH)
+export const query = graphql`
+  {
+    news: allWpPost {
+      edges {
+        node {
+          title
+          slug
+          date(formatString: " MMMM DD, YYYY")
+          content
+          featuredImage {
+            node {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(layout: FULL_WIDTH)
+                }
+              }
             }
           }
         }
       }
     }
   }
-}
 `

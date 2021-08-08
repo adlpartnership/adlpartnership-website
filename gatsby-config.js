@@ -19,7 +19,7 @@ module.exports = {
       options: {
         fields: ["title", "slug", "categories"],
         resolvers: {
-          wordpress__wp_portfolio: {
+          all__wp_portfolio: {
             title: node => node.title,
             slug: node => node.slug,
           },
@@ -30,6 +30,12 @@ module.exports = {
       resolve: "gatsby-source-wordpress",
       options: {
         baseUrl: "adminadlpartnership.sawirstudio.com",
+        url: process.env.WP_URL ?? "http://adlpartnership-wp.test" + "/graphql",
+        type: {
+          __all: {
+            limit: process.env.NODE_ENV === `development` ? 50 : null,
+          },
+        },
         protocol: "https",
         useACF: true,
         includedRoutes: [

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
 import { Link, useStaticQuery, graphql } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image"
 import queryString from "query-string"
 
 const tags = [
@@ -35,8 +35,8 @@ const ProjectsPage = props => {
   const [classActive, setActive] = useState(8)
   const [filterTag, setFilterTag] = useState("")
   const filteredProjects = props.data.allPortfolio.edges.filter(portfolio => {
-    return portfolio.node.categories
-      .map(e => e.name)
+    return portfolio.node.categories.nodes
+      .map(category => category.name)
       .join()
       .toLowerCase()
       .includes(filterTag.toLowerCase())
@@ -93,10 +93,14 @@ const ProjectsPage = props => {
                       style={{ paddingTop: "100%" }}
                     >
                       <GatsbyImage
-                        image={project.node.featured_media.localFile.childImageSharp.gatsbyImageData}
+                        image={
+                          project.node.featuredImage.node.localFile
+                            .childImageSharp.gatsbyImageData
+                        }
                         className="position-absolute w-100"
                         style={{ top: "0", left: "0", height: "100%" }}
-                        alt={project.node.featured_media.alt_text} />
+                        alt={project.node.featuredImage.node.altText}
+                      />
                       <div
                         className="position-absolute w-100 overlay"
                         style={{ bottom: "0" }}
@@ -106,7 +110,7 @@ const ProjectsPage = props => {
                     </div>
                   </Link>
                 </div>
-              );
+              )
             })}
             {/*{temporaryProjectData.map((project, index) => {
               return (
@@ -136,31 +140,35 @@ const ProjectsPage = props => {
         </div>
       </Layout>
     </React.Fragment>
-  );
+  )
 }
 
 export default ProjectsPage
 
-export const query = graphql`{
-  allPortfolio: allWordpressWpPortfolio {
-    edges {
-      node {
-        id
-        title
-        slug
-        categories {
-          name
-        }
-        featured_media {
-          alt_text
-          localFile {
-            childImageSharp {
-              gatsbyImageData(layout: FULL_WIDTH)
+export const query = graphql`
+  {
+    allPortfolio: allWpPortfolio {
+      edges {
+        node {
+          id
+          title
+          slug
+          categories {
+            nodes {
+              name
+            }
+          }
+          featuredImage {
+            node {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(layout: FULL_WIDTH)
+                }
+              }
             }
           }
         }
       }
     }
   }
-}
 `

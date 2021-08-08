@@ -1,7 +1,7 @@
 import React from "react"
 import { Carousel } from "react-responsive-carousel"
-import { GatsbyImage } from "gatsby-plugin-image";
-import carouselIndividualStyles from "./carouselIndividualProject.module.css"
+import { GatsbyImage } from "gatsby-plugin-image"
+// import carouselIndividualStyles from "./carouselIndividualProject.module.css"
 
 const CarouselIndividualProject = ({ dataImage }) => {
   return (
@@ -15,7 +15,7 @@ const CarouselIndividualProject = ({ dataImage }) => {
         showArrows={true}
         emulateTouch
         showIndicators={false}
-        className={carouselIndividualStyles.slide}
+        // className={carouselIndividualStyles.slide}
       >
         {dataImage.map(image => {
           return (
@@ -24,19 +24,20 @@ const CarouselIndividualProject = ({ dataImage }) => {
               style={{ paddingTop: "56.25%" }}
             >
               <GatsbyImage
-                image={image.guid.localFile.childImageSharp.gatsbyImageData}
+                image={image.localFile.childImageSharp.gatsbyImageData}
                 className="position-absolute w-100"
                 style={{
                   top: "0",
                   left: "0",
                   height: "100%",
                 }}
-                alt={image.guid.alt_text} />
+                alt={image.altText}
+              />
             </div>
-          );
+          )
         })}
       </Carousel>
     </React.Fragment>
-  );
+  )
 }
 export default CarouselIndividualProject

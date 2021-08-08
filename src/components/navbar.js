@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image"
 import { MdMenu, MdSearch } from "react-icons/md"
 import { NavDropdown } from "react-bootstrap"
 import { navigate } from "@reach/router"
@@ -13,20 +13,24 @@ const Navbar = props => {
     navigate(`/search?s=${search}`)
     window.location.reload()
   }
-  const { logo } = useStaticQuery(graphql`{
-  logo: file(relativePath: {eq: "ADL-icon.png"}) {
-    childImageSharp {
-      gatsbyImageData(height: 30, layout: FIXED)
+  const { logo } = useStaticQuery(graphql`
+    {
+      logo: file(relativePath: { eq: "ADL-icon.png" }) {
+        childImageSharp {
+          gatsbyImageData(height: 30, layout: FIXED)
+        }
+      }
     }
-  }
-}
-`)
+  `)
   return (
     <React.Fragment>
       <nav className="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
         <div className="container">
           <Link to="/" className="navbar-brand">
-            <GatsbyImage image={logo.childImageSharp.gatsbyImageData} alt="ADL Logo" />
+            <GatsbyImage
+              image={logo.childImageSharp.gatsbyImageData}
+              alt="ADL Logo"
+            />
           </Link>
           <button
             className="navbar-toggler border-0"
@@ -154,7 +158,7 @@ const Navbar = props => {
               </li>
             </ul>
             <form
-              className="form-inline my-2 my-lg-0 justify-content-end"
+              className="form-inline my-2 my-lg-0 justify-content-end d-flex"
               onSubmit={searchIt}
             >
               <input
@@ -171,7 +175,7 @@ const Navbar = props => {
         </div>
       </nav>
     </React.Fragment>
-  );
+  )
 }
 
 export default Navbar

@@ -2,21 +2,23 @@ import React from "react"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image"
 import CarouselIndividualProject from "../components/carouselIndividualProject"
 
 const ProjectTemplate = props => {
   const { portfolio, relatedPortfolio } = props.data
-
-  const categories = portfolio.categories.map(category => {
-    return category.name
-  })
+  let images = []
+  for (let i = 1; i <= 10; i++) {
+    images.push(portfolio.portfolioImages[`image${i}`])
+  }
+  images = images.filter((image, index) => image != null)
+  const categories = portfolio.categories.nodes.map(category => category.name)
   return (
     <React.Fragment>
       <SEO title={portfolio.title} />
       <Layout>
         <div className="container my-5">
-          <CarouselIndividualProject dataImage={portfolio.images} />
+          <CarouselIndividualProject dataImage={images} />
           <div className="my-5" />
           <h1
             className="h4 font-weight-light"
@@ -40,73 +42,90 @@ const ProjectTemplate = props => {
             </div>
             <div className="col-12 col-md-5">
               <p>
-                Client: 
-                <span
-                  dangerouslySetInnerHTML={{ __html: portfolio.acf.client }}
-                ></span>
-                <br /> Site area: 
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: portfolio.acf.site_area
-                      .replace(/m2/g, " ")
-                      .replace(/ha/g, " "),
-                  }}
-                ></span>
-                {portfolio.acf.site_area.includes("m2") ? (
-                  <React.Fragment>
-                    m<sup>2</sup>
-                  </React.Fragment>
-                ) : (
-                  "ha"
-                )}
-                {portfolio.acf.gfa !== "" ? (
-                  <React.Fragment>
+                {portfolio.projectDetails.client && (
+                  <>
+                    Client: 
+                    <span>portfolio.projectDetails.client</span>
                     <br />
-                    GFA:{" "}
+                  </>
+                )}
+
+                {portfolio.projectDetails.siteArea && (
+                  <>
+                    Site area: 
                     <span
                       dangerouslySetInnerHTML={{
-                        __html: portfolio.acf.gfa
+                        __html: portfolio.projectDetails.siteArea
                           .replace(/m2/g, " ")
                           .replace(/ha/g, " "),
                       }}
                     ></span>
-                    {portfolio.acf.gfa.includes("m2") ? (
+                    {portfolio.projectDetails.siteArea.includes("m2") ? (
                       <React.Fragment>
                         m<sup>2</sup>
                       </React.Fragment>
                     ) : (
                       "ha"
                     )}
-                  </React.Fragment>
-                ) : (
-                  ""
+                  </>
                 )}
-                <br />
-                Scope of Services:{" "}
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: portfolio.acf.scope_of_service,
-                  }}
-                ></span>
-                <br />
-                Current Status:{" "}
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: portfolio.acf.current_status,
-                  }}
-                ></span>
-                {portfolio.acf.current_status === "Completed" ? (
-                  ""
-                ) : (
+
+                {portfolio.projectDetails.gfa && (
                   <React.Fragment>
                     <br />
-                    Completion date:{" "}
+                    GFA:{" "}
                     <span
                       dangerouslySetInnerHTML={{
-                        __html: portfolio.acf.completion_date,
+                        __html: portfolio.projectDetails.gfa
+                          .replace(/m2/g, " ")
+                          .replace(/ha/g, " "),
                       }}
                     ></span>
+                    {portfolio.projectDetails.gfa.includes("m2") ? (
+                      <React.Fragment>
+                        m<sup>2</sup>
+                      </React.Fragment>
+                    ) : (
+                      "ha"
+                    )}
+                    <br />
                   </React.Fragment>
+                )}
+
+                {portfolio.projectDetails.scopeOfService && (
+                  <>
+                    Scope of Services:{" "}
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: portfolio.projectDetails.scopeOfService,
+                      }}
+                    ></span>
+                    <br />
+                  </>
+                )}
+
+                {portfolio.projectDetails.currentStatus && (
+                  <>
+                    Current Status:{" "}
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: portfolio.projectDetails.currentStatus,
+                      }}
+                    ></span>
+                    {portfolio.projectDetails.currentStatus === "Completed" ? (
+                      ""
+                    ) : (
+                      <React.Fragment>
+                        <br />
+                        Completion date:{" "}
+                        <span
+                          dangerouslySetInnerHTML={{
+                            __html: portfolio.projectDetails.completionDate,
+                          }}
+                        ></span>
+                      </React.Fragment>
+                    )}
+                  </>
                 )}
               </p>
             </div>
@@ -131,10 +150,14 @@ const ProjectTemplate = props => {
                         style={{ paddingTop: "56.25%" }}
                       >
                         <GatsbyImage
-                          image={portfolio.node.featured_media.localFile.childImageSharp.gatsbyImageData}
+                          image={
+                            portfolio.node.featuredImage.node.localFile
+                              .childImageSharp.gatsbyImageData
+                          }
                           className="position-absolute w-100"
                           style={{ top: "0", left: "0", height: "100%" }}
-                          alt={portfolio.node.featured_media.alt_text} />
+                          alt={portfolio.node.featuredImage.node.alt_text}
+                        />
                       </div>
                       <div className="my-2" />
                       <h6
@@ -145,7 +168,7 @@ const ProjectTemplate = props => {
                       ></h6>
                     </Link>
                   </div>
-                );
+                )
               })}
               {/*{temporaryImages.edges.map(image => {
                 return (
@@ -177,22 +200,118 @@ const ProjectTemplate = props => {
         </div>
       </Layout>
     </React.Fragment>
-  );
+  )
 }
 export default ProjectTemplate
 
-export const query = graphql`query ($slug: String, $categories: String) {
-  relatedPortfolio: allWordpressWpPortfolio(
-    limit: 3
-    filter: {categories: {elemMatch: {slug: {eq: $categories}}}}
-  ) {
-    edges {
-      node {
-        id
-        slug
-        title
-        featured_media {
-          alt_text
+export const query = graphql`
+  query($slug: String, $categories: String) {
+    relatedPortfolio: allWpPortfolio(
+      limit: 3
+      filter: {
+        categories: { nodes: { elemMatch: { slug: { eq: $categories } } } }
+      }
+    ) {
+      edges {
+        node {
+          id
+          slug
+          title
+          featuredImage {
+            node {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(layout: FULL_WIDTH)
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    portfolio: wpPortfolio(slug: { eq: $slug }) {
+      title
+      content
+      projectDetails {
+        client
+        completionDate
+        currentStatus
+        gfa
+        scopeOfService
+        siteArea
+      }
+      categories {
+        nodes {
+          id
+          name
+        }
+      }
+      portfolioImages {
+        image1 {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+          }
+        }
+        image2 {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+          }
+        }
+        image3 {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+          }
+        }
+        image4 {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+          }
+        }
+        image5 {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+          }
+        }
+        image6 {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+          }
+        }
+        image7 {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+          }
+        }
+        image8 {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+          }
+        }
+        image9 {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+          }
+        }
+        image10 {
           localFile {
             childImageSharp {
               gatsbyImageData(quality: 100, layout: FULL_WIDTH)
@@ -202,31 +321,4 @@ export const query = graphql`query ($slug: String, $categories: String) {
       }
     }
   }
-  portfolio: wordpressWpPortfolio(slug: {eq: $slug}) {
-    title
-    content
-    images {
-      guid {
-        alt_text
-        localFile {
-          childImageSharp {
-            gatsbyImageData(quality: 100, layout: FULL_WIDTH)
-          }
-        }
-      }
-    }
-    acf {
-      client
-      completion_date
-      current_status
-      gfa
-      scope_of_service
-      site_area
-    }
-    categories {
-      id
-      name
-    }
-  }
-}
 `

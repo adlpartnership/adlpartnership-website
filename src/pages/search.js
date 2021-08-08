@@ -6,7 +6,7 @@ import { navigate, useStaticQuery, graphql, Link } from "gatsby"
 import { MdSearch } from "react-icons/md"
 import { Index } from "elasticlunr"
 const SearchResultsPage = props => {
-  const keyword = queryString.parse(props.location.search)
+  const keyword = queryString.parse(props.location.search) ?? ""
   const [search, setSearch] = useState(keyword.s)
   const [loading, setLoading] = useState(true)
   const [searchResults, setSearchResults] = useState([])
@@ -15,23 +15,30 @@ const SearchResultsPage = props => {
   //     navigate(`/search?s=${search}`)
   //   }
 
-  function handleSearch() {
-    const index = Index.load(data.index)
-    let tempArray = []
-    index.search(keyword.s.toLowerCase(), {}).map(({ ref }) => {
-      tempArray.push(index.documentStore.getDoc(ref))
-    })
-
-    setSearchResults(tempArray)
-  }
-
   const { data } = useStaticQuery(graphql`
     {
-      data: siteSearchIndex {
-        index
+      data: allWpPortfolio {
+        edges {
+          node {
+            title
+            slug
+          }
+        }
       }
     }
   `)
+
+  function handleSearch() {
+    // const index = Index.load(data.index)
+    let tempArray =
+      search !== ""
+        ? data.edges.filter((res, index) =>
+            res.node.title.toLowerCase().includes(search.toLowerCase())
+          )
+        : data.edges
+    setSearchResults(tempArray)
+  }
+
   useEffect(() => {
     if (props.location.search !== "" && keyword.s !== undefined) {
       handleSearch()
@@ -49,17 +56,17 @@ const SearchResultsPage = props => {
           <div className="container my-5 search-result">
             <h1 className="display-4">Search Results</h1>
             <p className="text-muted">
-              Found {searchResults.length} results for "{keyword.s}"
+              Found {searchResults.length} results for "{search}"
             </p>
             <div className="my-5 " />
             {searchResults.map(result => {
               return (
-                <div className="col-12 col-md-4" key={`${result.id}`}>
+                <div className="col-12 col-md-4" key={`${result.node.id}`}>
                   <Link
-                    to={`/projects/${result.slug}`}
+                    to={`/projects/${result.node.slug}`}
                     className="text-decoration-none text-dark"
                   >
-                    <h3 className="font-weight-light">{result.title}</h3>
+                    <h3 className="font-weight-light">{result.node.title}</h3>
                   </Link>
                 </div>
               )
