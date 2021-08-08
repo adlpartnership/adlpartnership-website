@@ -29,10 +29,10 @@ module.exports = {
     {
       resolve: "gatsby-source-wordpress",
       options: {
-        baseUrl: "adminadlpartnership.sawirstudio.com",
-        url: process.env.WP_URL
-          ? process.env.WP_URL
-          : "http://adlpartnership-wp.test" + "/graphql",
+        url:
+          (process.env.WP_URL
+            ? process.env.WP_URL
+            : "http://adlpartnership-wp.test") + "/graphql",
         type: {
           __all: {
             limit: process.env.NODE_ENV === `development` ? 50 : null,
