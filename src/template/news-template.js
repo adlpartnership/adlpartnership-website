@@ -1,7 +1,7 @@
 import React from "react"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import { useStaticQuery, graphql } from "gatsby"
 
 const NewsTemplatePage = ({ data }) => {
@@ -19,11 +19,10 @@ const NewsTemplatePage = ({ data }) => {
             className="position-relative w-100 "
             style={{ paddingTop: "56.25%" }}
           >
-            <Img
+            <GatsbyImage
+              image={data.news.featured_media.localFile.childImageSharp.gatsbyImageData}
               className="position-absolute w-100"
-              style={{ top: "0", left: "0", height: "100%" }}
-              fluid={data.news.featured_media.localFile.childImageSharp.fluid}
-            />
+              style={{ top: "0", left: "0", height: "100%" }} />
           </div>
           <div
             className="mx-auto my-5"
@@ -87,26 +86,23 @@ const NewsTemplatePage = ({ data }) => {
         </div>
       </Layout>
     </React.Fragment>
-  )
+  );
 }
 
 export default NewsTemplatePage
 
-export const query = graphql`
-  query($slug: String) {
-    news: wordpressPost(slug: { eq: $slug }) {
-      title
-      date(formatString: "DD MMMM YYYY")
-      content
-      featured_media {
-        localFile {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
-            }
-          }
+export const query = graphql`query ($slug: String) {
+  news: wordpressPost(slug: {eq: $slug}) {
+    title
+    date(formatString: "DD MMMM YYYY")
+    content
+    featured_media {
+      localFile {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
     }
   }
+}
 `

@@ -2,7 +2,7 @@ import React from "react"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
 import { useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import { MdEmail } from "react-icons/md"
 import { FaLinkedin } from "react-icons/fa"
 
@@ -44,33 +44,27 @@ const temporaryDataProfile = [
 ]
 
 const PeoplePage = () => {
-  const { featuredImage, placeholder } = useStaticQuery(graphql`
-    {
-      featuredImage: file(relativePath: { eq: "people/architect.jpeg" }) {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      placeholder: file(relativePath: { eq: "people/Hangga.png" }) {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
+  const { featuredImage, placeholder } = useStaticQuery(graphql`{
+  featuredImage: file(relativePath: {eq: "people/architect.jpeg"}) {
+    childImageSharp {
+      gatsbyImageData(layout: FULL_WIDTH)
     }
-  `)
+  }
+  placeholder: file(relativePath: {eq: "people/Hangga.png"}) {
+    childImageSharp {
+      gatsbyImageData(layout: FULL_WIDTH)
+    }
+  }
+}
+`)
   return (
     <React.Fragment>
       <SEO title="People" />
       <Layout>
         <div className="position-relative">
-          <Img
-            fluid={featuredImage.childImageSharp.fluid}
-            className="featured-image-people-page"
-          />
+          <GatsbyImage
+            image={featuredImage.childImageSharp.gatsbyImageData}
+            className="featured-image-people-page" />
           <div
             className="position-absolute d-flex flex-column justify-content-center text-light text-center container"
             style={{
@@ -113,10 +107,7 @@ const PeoplePage = () => {
                 <div key={`${index}`} className="col-12 col-lg-6 mb-5 mb-lg-0">
                   <div className="row">
                     <div className="col-12 col-md-4">
-                      <Img
-                        className="w-100"
-                        fluid={placeholder.childImageSharp.fluid}
-                      />
+                      <GatsbyImage image={placeholder.childImageSharp.gatsbyImageData} className="w-100" />
                     </div>
                     <div className="col-12 col-md-8">
                       <h2 className="mt-4 mt-lg-0 font-weight-light">
@@ -147,12 +138,12 @@ const PeoplePage = () => {
                     </div>
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
       </Layout>
     </React.Fragment>
-  )
+  );
 }
 export default PeoplePage

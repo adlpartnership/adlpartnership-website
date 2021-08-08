@@ -2,7 +2,7 @@ import React from "react"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import CarouselIndividualProject from "../components/carouselIndividualProject"
 
 const ProjectTemplate = props => {
@@ -130,15 +130,11 @@ const ProjectTemplate = props => {
                         className="position-relative w-100"
                         style={{ paddingTop: "56.25%" }}
                       >
-                        <Img
+                        <GatsbyImage
+                          image={portfolio.node.featured_media.localFile.childImageSharp.gatsbyImageData}
                           className="position-absolute w-100"
                           style={{ top: "0", left: "0", height: "100%" }}
-                          fluid={
-                            portfolio.node.featured_media.localFile
-                              .childImageSharp.fluid
-                          }
-                          alt={portfolio.node.featured_media.alt_text}
-                        />
+                          alt={portfolio.node.featured_media.alt_text} />
                       </div>
                       <div className="my-2" />
                       <h6
@@ -149,7 +145,7 @@ const ProjectTemplate = props => {
                       ></h6>
                     </Link>
                   </div>
-                )
+                );
               })}
               {/*{temporaryImages.edges.map(image => {
                 return (
@@ -181,61 +177,56 @@ const ProjectTemplate = props => {
         </div>
       </Layout>
     </React.Fragment>
-  )
+  );
 }
 export default ProjectTemplate
 
-export const query = graphql`
-  query($slug: String, $categories: String) {
-    relatedPortfolio: allWordpressWpPortfolio(
-      limit: 3
-      filter: { categories: { elemMatch: { slug: { eq: $categories } } } }
-    ) {
-      edges {
-        node {
-          id
-          slug
-          title
-          featured_media {
-            alt_text
-            localFile {
-              childImageSharp {
-                fluid(quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    portfolio: wordpressWpPortfolio(slug: { eq: $slug }) {
-      title
-      content
-      images {
-        guid {
+export const query = graphql`query ($slug: String, $categories: String) {
+  relatedPortfolio: allWordpressWpPortfolio(
+    limit: 3
+    filter: {categories: {elemMatch: {slug: {eq: $categories}}}}
+  ) {
+    edges {
+      node {
+        id
+        slug
+        title
+        featured_media {
           alt_text
           localFile {
             childImageSharp {
-              fluid(quality: 100) {
-                ...GatsbyImageSharpFluid
-              }
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
             }
           }
         }
       }
-      acf {
-        client
-        completion_date
-        current_status
-        gfa
-        scope_of_service
-        site_area
-      }
-      categories {
-        id
-        name
-      }
     }
   }
+  portfolio: wordpressWpPortfolio(slug: {eq: $slug}) {
+    title
+    content
+    images {
+      guid {
+        alt_text
+        localFile {
+          childImageSharp {
+            gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+          }
+        }
+      }
+    }
+    acf {
+      client
+      completion_date
+      current_status
+      gfa
+      scope_of_service
+      site_area
+    }
+    categories {
+      id
+      name
+    }
+  }
+}
 `

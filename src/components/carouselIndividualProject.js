@@ -1,6 +1,6 @@
 import React from "react"
 import { Carousel } from "react-responsive-carousel"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import carouselIndividualStyles from "./carouselIndividualProject.module.css"
 
 const CarouselIndividualProject = ({ dataImage }) => {
@@ -23,21 +23,20 @@ const CarouselIndividualProject = ({ dataImage }) => {
               className="position-relative w-100"
               style={{ paddingTop: "56.25%" }}
             >
-              <Img
+              <GatsbyImage
+                image={image.guid.localFile.childImageSharp.gatsbyImageData}
                 className="position-absolute w-100"
                 style={{
                   top: "0",
                   left: "0",
                   height: "100%",
                 }}
-                fluid={image.guid.localFile.childImageSharp.fluid}
-                alt={image.guid.alt_text}
-              />
+                alt={image.guid.alt_text} />
             </div>
-          )
+          );
         })}
       </Carousel>
     </React.Fragment>
-  )
+  );
 }
 export default CarouselIndividualProject

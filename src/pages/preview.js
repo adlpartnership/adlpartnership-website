@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import Layout from "../components/layout"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import { Link } from "gatsby"
 import WPAPI from "wpapi"
 import querystring from "query-string"
@@ -320,7 +320,7 @@ export default function PreviewPage({ location }) {
             </div>
           </Layout>
         </React.Fragment>
-      )
+      );
     }
   } else {
     return (

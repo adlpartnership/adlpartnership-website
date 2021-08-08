@@ -1,7 +1,7 @@
 import React from "react"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import { useStaticQuery, graphql, Link } from "gatsby"
 
 const PeopleTemplatePage = ({ data }) => {
@@ -22,13 +22,10 @@ const PeopleTemplatePage = ({ data }) => {
                   className="position-relative w-100 "
                   style={{ paddingTop: "56.25%" }}
                 >
-                  <Img
+                  <GatsbyImage
+                    image={data.people.featured_media.localFile.childImageSharp.gatsbyImageData}
                     className="position-absolute w-100"
-                    style={{ top: "0", left: "0", height: "100%" }}
-                    fluid={
-                      data.people.featured_media.localFile.childImageSharp.fluid
-                    }
-                  />
+                    style={{ top: "0", left: "0", height: "100%" }} />
                 </div>
               </div>
             </div>
@@ -60,26 +57,23 @@ const PeopleTemplatePage = ({ data }) => {
         </div>
       </Layout>
     </React.Fragment>
-  )
+  );
 }
 
 export default PeopleTemplatePage
 
-export const query = graphql`
-  query($slug: String) {
-    people: wordpressWpPeople(slug: { eq: $slug }) {
-      title
-      professional_title
-      content
-      featured_media {
-        localFile {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
-            }
-          }
+export const query = graphql`query ($slug: String) {
+  people: wordpressWpPeople(slug: {eq: $slug}) {
+    title
+    professional_title
+    content
+    featured_media {
+      localFile {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
     }
   }
+}
 `

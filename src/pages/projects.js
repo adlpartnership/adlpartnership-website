@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
 import { Link, useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import queryString from "query-string"
 
 const tags = [
@@ -92,15 +92,11 @@ const ProjectsPage = props => {
                       className="position-relative w-100"
                       style={{ paddingTop: "100%" }}
                     >
-                      <Img
+                      <GatsbyImage
+                        image={project.node.featured_media.localFile.childImageSharp.gatsbyImageData}
                         className="position-absolute w-100"
                         style={{ top: "0", left: "0", height: "100%" }}
-                        fluid={
-                          project.node.featured_media.localFile.childImageSharp
-                            .fluid
-                        }
-                        alt={project.node.featured_media.alt_text}
-                      />
+                        alt={project.node.featured_media.alt_text} />
                       <div
                         className="position-absolute w-100 overlay"
                         style={{ bottom: "0" }}
@@ -110,7 +106,7 @@ const ProjectsPage = props => {
                     </div>
                   </Link>
                 </div>
-              )
+              );
             })}
             {/*{temporaryProjectData.map((project, index) => {
               return (
@@ -140,34 +136,31 @@ const ProjectsPage = props => {
         </div>
       </Layout>
     </React.Fragment>
-  )
+  );
 }
 
 export default ProjectsPage
 
-export const query = graphql`
-  {
-    allPortfolio: allWordpressWpPortfolio {
-      edges {
-        node {
-          id
-          title
-          slug
-          categories {
-            name
-          }
-          featured_media {
-            alt_text
-            localFile {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+export const query = graphql`{
+  allPortfolio: allWordpressWpPortfolio {
+    edges {
+      node {
+        id
+        title
+        slug
+        categories {
+          name
+        }
+        featured_media {
+          alt_text
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: FULL_WIDTH)
             }
           }
         }
       }
     }
   }
+}
 `

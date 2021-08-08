@@ -2,27 +2,22 @@ import React from "react"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import CarouselIndividualProject from "../components/carouselIndividualProject"
 
 const ProjectTemplate = () => {
-  const { temporaryImages } = useStaticQuery(graphql`
-    {
-      temporaryImages: allFile(
-        filter: { relativeDirectory: { eq: "carousel-hero" } }
-      ) {
-        edges {
-          node {
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
+  const { temporaryImages } = useStaticQuery(graphql`{
+  temporaryImages: allFile(filter: {relativeDirectory: {eq: "carousel-hero"}}) {
+    edges {
+      node {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
     }
-  `)
+  }
+}
+`)
   return (
     <React.Fragment>
       <SEO title="Individual Project Page" />
@@ -86,11 +81,10 @@ const ProjectTemplate = () => {
                         className="position-relative w-100"
                         style={{ paddingTop: "56.25%" }}
                       >
-                        <Img
+                        <GatsbyImage
+                          image={image.node.childImageSharp.gatsbyImageData}
                           className="position-absolute w-100"
-                          style={{ top: "0", left: "0", height: "100%" }}
-                          fluid={image.node.childImageSharp.fluid}
-                        />
+                          style={{ top: "0", left: "0", height: "100%" }} />
                       </div>
                       <div className="my-2" />
                       <h6 className="font-weight-light">
@@ -98,13 +92,13 @@ const ProjectTemplate = () => {
                       </h6>
                     </Link>
                   </div>
-                )
+                );
               })}
             </div>
           </div>
         </div>
       </Layout>
     </React.Fragment>
-  )
+  );
 }
 export default ProjectTemplate

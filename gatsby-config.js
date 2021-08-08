@@ -5,6 +5,9 @@ module.exports = {
     author: `Ricardo Sawir`,
   },
   plugins: [
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {

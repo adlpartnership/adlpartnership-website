@@ -1,23 +1,18 @@
 import React from "react"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import { useStaticQuery, graphql } from "gatsby"
 
 const PeopleTemplatePage = () => {
-  const { temporaryFeaturedImage } = useStaticQuery(graphql`
-    {
-      temporaryFeaturedImage: file(
-        relativePath: { eq: "people/architect.jpeg" }
-      ) {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
+  const { temporaryFeaturedImage } = useStaticQuery(graphql`{
+  temporaryFeaturedImage: file(relativePath: {eq: "people/architect.jpeg"}) {
+    childImageSharp {
+      gatsbyImageData(layout: FULL_WIDTH)
     }
-  `)
+  }
+}
+`)
   return (
     <React.Fragment>
       <SEO title="News Details Page" />
@@ -28,11 +23,10 @@ const PeopleTemplatePage = () => {
               className="position-relative w-100 "
               style={{ paddingTop: "56.25%" }}
             >
-              <Img
+              <GatsbyImage
+                image={temporaryFeaturedImage.childImageSharp.gatsbyImageData}
                 className="position-absolute w-100"
-                style={{ top: "0", left: "0", height: "100%" }}
-                fluid={temporaryFeaturedImage.childImageSharp.fluid}
-              />
+                style={{ top: "0", left: "0", height: "100%" }} />
             </div>
           </div>
           <h1 className="text-center">Lukito Nugroho</h1>
@@ -56,7 +50,7 @@ const PeopleTemplatePage = () => {
         </div>
       </Layout>
     </React.Fragment>
-  )
+  );
 }
 
 export default PeopleTemplatePage

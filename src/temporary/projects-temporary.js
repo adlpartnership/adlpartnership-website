@@ -2,7 +2,7 @@ import React from "react"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
 import { Link, useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const tags = [
   "All",
@@ -32,19 +32,14 @@ const temporaryProjectData = [
 ]
 
 const ProjectsPage = () => {
-  const { temporaryImage } = useStaticQuery(graphql`
-    {
-      temporaryImage: file(
-        relativePath: { eq: "carousel-hero/citraland-1.jpg" }
-      ) {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
+  const { temporaryImage } = useStaticQuery(graphql`{
+  temporaryImage: file(relativePath: {eq: "carousel-hero/citraland-1.jpg"}) {
+    childImageSharp {
+      gatsbyImageData(layout: FULL_WIDTH)
     }
-  `)
+  }
+}
+`)
   return (
     <React.Fragment>
       <SEO title="Projects" />
@@ -74,11 +69,10 @@ const ProjectsPage = () => {
                       className="position-relative w-100"
                       style={{ paddingTop: "100%" }}
                     >
-                      <Img
+                      <GatsbyImage
+                        image={temporaryImage.childImageSharp.gatsbyImageData}
                         className="position-absolute w-100"
-                        style={{ top: "0", left: "0", height: "100%" }}
-                        fluid={temporaryImage.childImageSharp.fluid}
-                      />
+                        style={{ top: "0", left: "0", height: "100%" }} />
                       <div
                         className="position-absolute w-100 overlay"
                         style={{ bottom: "0" }}
@@ -88,13 +82,13 @@ const ProjectsPage = () => {
                     </div>
                   </Link>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
       </Layout>
     </React.Fragment>
-  )
+  );
 }
 
 export default ProjectsPage

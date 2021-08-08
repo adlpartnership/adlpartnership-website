@@ -1,7 +1,7 @@
 import React from "react"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import { graphql } from "gatsby"
 
 const ServicesPage = ({ data }) => {
@@ -10,10 +10,9 @@ const ServicesPage = ({ data }) => {
       <SEO title="Services" />
       <Layout>
         <div className="position-relative">
-          <Img
-            fluid={data.featuredImage.childImageSharp.fluid}
-            className="featured-image-people-page"
-          />
+          <GatsbyImage
+            image={data.featuredImage.childImageSharp.gatsbyImageData}
+            className="featured-image-people-page" />
           <div
             className="position-absolute d-flex flex-column justify-content-center text-light text-center container"
             style={{
@@ -58,18 +57,15 @@ const ServicesPage = ({ data }) => {
         </div>
       </Layout>
     </React.Fragment>
-  )
+  );
 }
 export default ServicesPage
 
-export const query = graphql`
-  {
-    featuredImage: file(relativePath: { eq: "people/architect.jpeg" }) {
-      childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid
-        }
-      }
+export const query = graphql`{
+  featuredImage: file(relativePath: {eq: "people/architect.jpeg"}) {
+    childImageSharp {
+      gatsbyImageData(layout: FULL_WIDTH)
     }
   }
+}
 `

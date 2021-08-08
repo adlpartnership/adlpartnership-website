@@ -17,27 +17,24 @@ const IndexPage = ({ data }) => {
 
 export default IndexPage
 
-export const query = graphql`
-  {
-    featured: allWordpressWpPortfolio(
-      filter: { acf: { include_in_home_page: { eq: true } } }
-    ) {
-      edges {
-        node {
-          id
-          title
-          slug
-          featured_media {
-            localFile {
-              childImageSharp {
-                fluid(quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+export const query = graphql`{
+  featured: allWordpressWpPortfolio(
+    filter: {acf: {include_in_home_page: {eq: true}}}
+  ) {
+    edges {
+      node {
+        id
+        title
+        slug
+        featured_media {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
             }
           }
         }
       }
     }
   }
+}
 `

@@ -1,23 +1,18 @@
 import React from "react"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import { useStaticQuery, graphql } from "gatsby"
 
 const NewsTemplate = () => {
-  const { temporaryFeaturedImage } = useStaticQuery(graphql`
-    {
-      temporaryFeaturedImage: file(
-        relativePath: { eq: "people/architect.jpeg" }
-      ) {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
+  const { temporaryFeaturedImage } = useStaticQuery(graphql`{
+  temporaryFeaturedImage: file(relativePath: {eq: "people/architect.jpeg"}) {
+    childImageSharp {
+      gatsbyImageData(layout: FULL_WIDTH)
     }
-  `)
+  }
+}
+`)
   return (
     <React.Fragment>
       <SEO title="News Details Page" />
@@ -29,11 +24,10 @@ const NewsTemplate = () => {
             className="position-relative w-100"
             style={{ paddingTop: "56.25%" }}
           >
-            <Img
+            <GatsbyImage
+              image={temporaryFeaturedImage.childImageSharp.gatsbyImageData}
               className="position-absolute w-100"
-              style={{ top: "0", left: "0", height: "100%" }}
-              fluid={temporaryFeaturedImage.childImageSharp.fluid}
-            />
+              style={{ top: "0", left: "0", height: "100%" }} />
           </div>
           <div
             className="mx-auto my-5"
@@ -60,11 +54,10 @@ const NewsTemplate = () => {
                 className="position-relative w-100 "
                 style={{ paddingTop: "56.25%" }}
               >
-                <Img
+                <GatsbyImage
+                  image={temporaryFeaturedImage.childImageSharp.gatsbyImageData}
                   className="position-absolute w-100"
-                  style={{ top: "0", left: "0", height: "100%" }}
-                  fluid={temporaryFeaturedImage.childImageSharp.fluid}
-                />
+                  style={{ top: "0", left: "0", height: "100%" }} />
               </div>
               <div className="my-3" />
               <h5>Other Article Title</h5>
@@ -75,11 +68,10 @@ const NewsTemplate = () => {
                 className="position-relative w-100"
                 style={{ paddingTop: "56.25%" }}
               >
-                <Img
+                <GatsbyImage
+                  image={temporaryFeaturedImage.childImageSharp.gatsbyImageData}
                   className="position-absolute w-100"
-                  style={{ top: "0", left: "0", height: "100%" }}
-                  fluid={temporaryFeaturedImage.childImageSharp.fluid}
-                />
+                  style={{ top: "0", left: "0", height: "100%" }} />
               </div>
               <div className="my-3" />
               <h5>Other Article Title</h5>
@@ -90,11 +82,10 @@ const NewsTemplate = () => {
                 className="position-relative w-100"
                 style={{ paddingTop: "56.25%" }}
               >
-                <Img
+                <GatsbyImage
+                  image={temporaryFeaturedImage.childImageSharp.gatsbyImageData}
                   className="position-absolute w-100"
-                  style={{ top: "0", left: "0", height: "100%" }}
-                  fluid={temporaryFeaturedImage.childImageSharp.fluid}
-                />
+                  style={{ top: "0", left: "0", height: "100%" }} />
               </div>
               <div className="my-3" />
               <h5>Other Article Title</h5>
@@ -104,7 +95,7 @@ const NewsTemplate = () => {
         </div>
       </Layout>
     </React.Fragment>
-  )
+  );
 }
 
 export default NewsTemplate
