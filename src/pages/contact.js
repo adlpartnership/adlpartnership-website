@@ -36,7 +36,7 @@ const ContactPage = () => {
                     <input name="bot-field" />
                   </label>
                 </p>
-                <div className="form-row">
+                <div className="row">
                   <div className="col-12 col-md-6">
                     <input
                       type="text"
