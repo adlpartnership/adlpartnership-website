@@ -40,7 +40,7 @@ const Navbar = props => {
             <MdMenu size={"2rem"} color={"#AAAAAA"} />
           </button>
           <div
-            className={`collapse navbar-collapse bg-white ${openCollapsedMenu &&
+            className={`collapse navbar-collapse justify-content-md-between bg-white ${openCollapsedMenu &&
               `show`}`}
           >
             <ul className={`navbar-nav mr-auto text-uppercase align-items-end`}>

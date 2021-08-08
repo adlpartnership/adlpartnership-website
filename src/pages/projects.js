@@ -65,21 +65,19 @@ const ProjectsPage = props => {
               All
             </p>
           </li>
-          {tags.map((tag, index) => {
-            return (
-              <li className="nav-item">
-                <p
-                  className={`nav-link font-weight-light m-0 ${
-                    index === classActive ? `text-danger` : `text-muted`
-                  }`}
-                  onClick={() => (setFilterTag(tag), setActive(index))}
-                  style={{ cursor: "pointer" }}
-                >
-                  {tag}
-                </p>
-              </li>
-            )
-          })}
+          {tags.map((tag, index) => (
+            <li key={`tag${index}`} className="nav-item">
+              <p
+                className={`nav-link font-weight-light m-0 ${
+                  index === classActive ? `text-danger` : `text-muted`
+                }`}
+                onClick={() => (setFilterTag(tag), setActive(index))}
+                style={{ cursor: "pointer" }}
+              >
+                {tag}
+              </p>
+            </li>
+          ))}
         </ul>
         <div className="divider" />
         <div className="container-fluid">
@@ -99,7 +97,11 @@ const ProjectsPage = props => {
                         }
                         className="position-absolute w-100"
                         style={{ top: "0", left: "0", height: "100%" }}
-                        alt={project.node.featuredImage.node.altText}
+                        alt={
+                          project.node.featuredImage
+                            ? project.node.featuredImage.node.altText
+                            : ""
+                        }
                       />
                       <div
                         className="position-absolute w-100 overlay"

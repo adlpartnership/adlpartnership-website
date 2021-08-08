@@ -48,23 +48,6 @@ module.exports = {
           requestConcurrency: 1, // i cant remember if this was a fix or not, but i just killed all concurrency which the command line probably overrode
           timeout: 90000, // i cant remember if this was a fix or not, or just an attempt at killing the bug in this thread
         },
-        protocol: "https",
-        useACF: true,
-        includedRoutes: [
-          "**/categories",
-          "**/posts",
-          "**/pages",
-          "**/media",
-          "**/tags",
-          "**/taxonomies",
-          "**/users",
-          "**/portfolio",
-          "**/people",
-          "**/people_partner",
-        ],
-        normalizer: function({ entities }) {
-          return entities
-        },
       },
     },
     `gatsby-plugin-sass`,

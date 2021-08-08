@@ -58,6 +58,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
+  print("building portfolio")
   res.data.portfolio.edges.forEach(portfolio => {
     createPage({
       component: portfolioTemplate,
@@ -68,6 +69,8 @@ module.exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
+  print("building news")
+
   res.data.news.edges.forEach(news => {
     createPage({
       component: newsTemplate,
@@ -78,6 +81,8 @@ module.exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
+  print("building people")
+
   res.data.people.edges.forEach(person => {
     createPage({
       component: peopleTemplate,
@@ -87,6 +92,8 @@ module.exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
+  print("building partner")
+
   res.data.peoplePartner.edges.forEach(person => {
     createPage({
       component: peoplePartnerTemplate,
