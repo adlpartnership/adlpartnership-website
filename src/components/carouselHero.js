@@ -42,7 +42,7 @@ const CarouselHero = ({ data }) => {
                 }
                 className={`image-carousel`}
               />
-              <Link to={`/${image.node.slug}`}>
+              <Link to={`/projects/${image.node.slug}`}>
                 <h1 className={`legend styled-legend`}>{image.node.title}</h1>
               </Link>
             </React.Fragment>
