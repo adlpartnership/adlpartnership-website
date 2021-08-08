@@ -39,13 +39,13 @@ module.exports = {
           },
           MediaItem: {
             localFile: {
-              requestConcurrency: 1, // i cant remember if this was a fix or not, but i just killed all concurrency which the command line probably overrode
+              requestConcurrency: 5, // i cant remember if this was a fix or not, but i just killed all concurrency which the command line probably overrode
               maxFileSizeBytes: 100000000, // large images would die if they were larger than.. like, 5mb by default? undocumented and threw no warnings, just died.
             },
           },
         },
         schema: {
-          requestConcurrency: 1, // i cant remember if this was a fix or not, but i just killed all concurrency which the command line probably overrode
+          requestConcurrency: 5, // i cant remember if this was a fix or not, but i just killed all concurrency which the command line probably overrode
           timeout: 90000, // i cant remember if this was a fix or not, or just an attempt at killing the bug in this thread
         },
       },

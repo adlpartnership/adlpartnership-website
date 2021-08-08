@@ -9,13 +9,20 @@
 const path = require("path")
 
 module.exports.createPages = async ({ graphql, actions }) => {
+  console.log("starting")
   const { createPage } = actions
+  console.log("starting create Page")
   const portfolioTemplate = path.resolve("./src/template/project-template.js")
+  console.log("Portfolio created Page")
   const newsTemplate = path.resolve("./src/template/news-template.js")
+  console.log("News created Page")
   const peopleTemplate = path.resolve("./src/template/people-template.js")
+  console.log("People created Page")
   const peoplePartnerTemplate = path.resolve(
     "./src/template/peoplePartnerTemplate.js"
   )
+  console.log("Partner created Page")
+  console.log("Querying")
   const res = await graphql(`
     query {
       portfolio: allWpPortfolio {
@@ -58,7 +65,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
-  print("building portfolio")
+  console.log("building portfolio")
   res.data.portfolio.edges.forEach(portfolio => {
     createPage({
       component: portfolioTemplate,
@@ -69,7 +76,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
-  print("building news")
+  console.log("building news")
 
   res.data.news.edges.forEach(news => {
     createPage({
@@ -81,7 +88,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
-  print("building people")
+  console.log("building people")
 
   res.data.people.edges.forEach(person => {
     createPage({
@@ -92,7 +99,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
-  print("building partner")
+  console.log("building partner")
 
   res.data.peoplePartner.edges.forEach(person => {
     createPage({
